@@ -66,9 +66,9 @@
 
   //   console.log(arr);
   // }
-  const multily = (x,y,z) => {
-    return console.log((x * y) * z);
-  }
+  // const multily = (x,y,z) => {
+  //   return console.log((x * y) * z);
+  // }
 
-  multily(1,2,3);
+  // multily(1,2,3);
 }());
