@@ -1,5 +1,5 @@
-(function() {
-  'use strict';
+(function() { // 즉시 실행 함수로 스크립트 전체를 감싸서 스코프를 구분하고
+  'use strict'; // 즉시 실행 함수의 선두에 strict mode를 적용한다.
 
   // let str = '';
 
