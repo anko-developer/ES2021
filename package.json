@@ -1,0 +1,23 @@
+{
+  "name": "study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "sass": "^1.34.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "sass": "sass --watch src/assets/scss/index.scss src/assets/css/app.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anko-developer/ES2021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anko-developer/ES2021/issues"
+  },
+  "homepage": "https://github.com/anko-developer/ES2021#readme"
+}
