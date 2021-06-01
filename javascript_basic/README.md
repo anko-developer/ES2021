@@ -13,8 +13,8 @@ const plan = {
 ```
 
 ## Clean Code를 만드는 방법
--  DRY 하게, <em style="font-style:normal;color:red;">D</em>on't <em style="font-style:normal;color:red;">R</em>epeat <em style="font-style:normal;color:red;">Y</em>ourself, 계속 반복되어지는 것을 피하자
-- KISS 하게, <em style="font-style:normal;color:red;">K</em>eep <em style="font-style:normal;color:red;">I</em>t <em style="font-style:normal;color:red;">S</em>imple, <em style="font-style:normal;color:red;">S</em>tupid, 코드는 심플하고 멍청하게
-- YAGNI 하게, <em style="font-style:normal;color:red;">Y</em>ou <em style="font-style:normal;color:red;">A</em>in't <em style="font-style:normal;color:red;">G</em>onna <em style="font-style:normal;color:red;">N</em>eed <em style="font-style:normal;color:red;">I</em>t,  
+-  DRY 하게, Don't Repeat Yourself, 계속 반복되어지는 것을 피하자
+- KISS 하게, Keep It Simple, Stupid, 코드는 심플하고 멍청하게
+- YAGNI 하게, You Ain't Gonna Need It,  
 깨끗하게, 변경이 쉽게, 유지보수 용이하게 <strong>O</strong>  
 필요하지 않는 기능, 사용하지 않는 기능, 지나치게 미래지향적 <strong>X</strong>
