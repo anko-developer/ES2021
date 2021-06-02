@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   function getLength(str = '') {
@@ -9,15 +9,14 @@
   getLength('김명욱');
 
   const MYAPP = {
-    hi: "응",
-    say: function() {
+    hi: '응',
+    say: function () {
       console.log('test is ' + this.hi);
     }
   };
 
   console.log(MYAPP.hi);
   MYAPP.say();
-
 
   /**
    * 생성자 함수 이름은 일반적으로 대문자로 시작한다, 이것은 생성자 함수임을 인식하도록 도움을 준다.
@@ -29,7 +28,8 @@
     let married = true; // private
     this.name = name; // public
     this.gender = gender; // public
-    this.sayHello = function() { // public
+    this.sayHello = function () {
+      // public
       console.log('Hi! ' + this.name);
     };
   }
@@ -47,24 +47,22 @@
   person1.sayHello();
   person2.sayHello();
 
-
   const test = {
     gender: 'male',
     1: 10
-  }
-  
+  };
+
   console.log(test.gender);
   // console.log(test['gender']);
   console.log(test['1']);
-  delete test['1']; 
+  delete test['1'];
   console.log(test);
-
 
   // for-in 문
   const app = {
     'first-name': 'Kim',
     gender: 'male'
-  }
+  };
 
   // prop에 객체의 프로퍼티 이름이 반환된다. 단, 순서는 보장되지 않음.
   for (let prop in app) {
@@ -79,7 +77,7 @@
   const array = ['one', 'two'];
 
   // index에 배열의 경우 인덱스가 반환된다.
-  for(let index in array) {
+  for (let index in array) {
     console.log(array[index]);
   }
 
@@ -87,7 +85,6 @@
   one
   two
   */
-
 
   /**
    * 배열에는 사용하지 않는 것이 좋다,
@@ -105,23 +102,21 @@
     console.log(value);
   }
 
-
   // Pass-by-reference (참조 타입)
 
   // foo와 bar는 같은 값을 참조하고 있기 때문에 값이 공유된다.
   const foo = {
     val: 10
-  }
+  };
 
   const bar = foo;
   console.log(foo.val, bar.val); // 10, 10
   console.log(foo === bar); // true
-  
+
   bar.val = 20;
   console.log(bar.val); // 20
   console.log(foo === bar); // true
 
-  
   const foo1 = { val: 10 };
   const bar1 = { val: 10 };
   console.log(foo1 === bar1); // 서로 참조하는 값이 다르므로 false
@@ -129,11 +124,10 @@
   const baz = bar1;
   console.log(baz === bar1); // baz와 bar1은 같은 참조 값을 바라보기 때문에 true
 
-  
   var x = 1;
   var y = x;
 
   x = 10;
   console.log(x, y);
   console.log(x === y); // false
-}());
+})();
