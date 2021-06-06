@@ -20,10 +20,10 @@ Other Style Guides
 
 ## Table of Contents
 
-  1. [Clean Coding](#Clean-Coding)
+  1. [Clean Coding](#clean-coding)
   <!-- 1. [Clean Coding](#references) -->
 
-## Clean-Coding
+## Clean Coding
 
   - **Important**: 반드시 지켜야 할 것들 이라고 생각한다.
 
