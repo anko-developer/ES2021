@@ -7,8 +7,8 @@
 점심 먹고 1시간, 퇴근하고 1시간, 하루 2시간 나를 위한 시간을 갖도록 하자 :D
 ([anko-developer](https://github.com/anko-developer))
 
-<!-- 
-This guide is available in other languages too. See [Translation](#translation)
+
+<!-- This guide is available in other languages too. See [Translation](#translation)
 
 Other Style Guides
 
@@ -21,7 +21,7 @@ Other Style Guides
 ## Table of Contents
 
   1. [Clean Coding](#clean-coding)
-  1. [Type](#type)
+  1. [Types](#types)
   <!-- 1. [Clean Coding](#references) -->
 
 ## Clean Coding
@@ -38,7 +38,7 @@ Other Style Guides
     필요하지 않는 기능, 사용하지 않는 기능, 지나치게 미래지향적 (X)
     ```
 
-## Type
+## Types
 
   - 데이터 타입이 필요한 이유는?
     - 값을 저장할 때 확보해야 하는 **메모리 공간의 크기**를 결정하기 위해
