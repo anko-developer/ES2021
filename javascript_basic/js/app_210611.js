@@ -1,3 +1,7 @@
 (function () {
-  'use strict';
+  const obj = {
+    name: 'anko'
+  };
+
+  // today rest
 })();
