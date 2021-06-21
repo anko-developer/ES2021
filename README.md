@@ -199,26 +199,27 @@ Other Style Guides
 
 - **프로퍼티 축약 표현**: ES6에서는 프로퍼티 값으로 변수를 사용하는 경우 변수 이름과 프로퍼티 키가 동일한 이름일 때 프로퍼티 키를 생략
 
-  ````javascript
+  ```javascript
   // ES5
-  var x = 1, y = 2;
+  var x = 1,
+    y = 2;
 
   var obj = {
-    x : x,
-    y : y
+    x: x,
+    y: y
   };
 
   console.log(obj); // {x: 1, y: 2}
 
-
   // ES6
-  let x = 1, y = 2;
+  let x = 1,
+    y = 2;
 
   // 프로퍼티 축약 표현
   const obj = { x, y };
 
   console.log(obj); // {x: 1, y: 2}
-  ````
+  ```
 
 - **계산된 프로퍼티 이름(computed property name)**: 문자열 또는 문자열로 타입 변환할 수 있는 값으로 평가되는 표혀식을 사용해 프로퍼티 키를 동적으로 생성 할 수도 있다.
 
@@ -275,5 +276,66 @@ Other Style Guides
   obj.sayHi(); // Hi! Lee
   ```
 
-  **[⬆ back to top](#table-of-contents)**
+- [중요] **얕은 복사(shallow copy)와 깊은 복사(deep copy)**: 객체를 프로퍼티 값으로 갖는 객체의 경우 얕은 복사 한 단계까지만 복사하는 것을 말하고 깊은 복사는 객체의 중첩되어 있는 객체까지 모두 복사하는 것을 말한다.  
+  얕은 복사와 깊은 복사로 생성된 객체는 원본과는 다른 객체다. 즉, 원본과 복사본은 참조 값이 다른 별개의 객체다. 하지만 얕은 복사는 객체의 중첩되어 있는 객체의 경우 참조 값을 복사하고 깊은 복사는 객체에 중첩되어 있는 객체까지 모두 복사해서 원시 값처럼 완전한 복사본을 만든다는 차이가 있다.  
+  전달되는 값의 종류가 원시 값인지 참조 값인지 구별해서 강조하는 의미에서 '값에 의한 전달'과 '참조에 의한 전달'로 구분하여 부르기도 한다.
+
+  ```javascript
+  const o = { x: { y: 1 } };
+
+  // 얕은 복사
+  const c1 = { ...o }; // 스프레드 문법
+  console.log(c1 === o); // false
+  console.log(c1.x === o.x); // true
+
+  // lodash의 cloneDeep을 사용한 깊은 복사
+  const _ = require('lodash');
+  // 깊은 복사
+  const c2 = _.cloneDeep(o);
+  console.log(c2 === o); // false
+  console.log(c2.x === o.x); // false
+  ```
+
+  다음과 같이 원시 값을 할당한 변수를 다른 변수에 할당하는 것은 깊은 복사, 객체를 할당한 변수를 다른 변수에 할당하는 것(참조값)은 얕은 복사라고 부르는 경우도 있다.
+
+  ```javascript
+  let v = 1;
+
+  // '깊은 복사'라고 부르기도 한다.
+  const c1 = v;
+  console.log(c1 === v); // true - 값은 같지만 메모리가 다른 원시 값이다.
+
+  v = 2;
+  console.log(c1 === v); // false - 그러므로 여기서 false 가 나오는 것이다!
+
+  const o = { x: 1 };
+
+  // '얕은 복사'라고 부르기도 한다.
+  // 얕은 복사는 저장된 메모리 주소는 다르지만 동일한 참조 값을 갖는다. c2와 o는 모두 동일한 객체를 가리킨다. 이것은 두 개의 식별자가 하나의 객체를 공유한다는 것을 의미한다.
+  const c2 = o;
+  console.log(c2 === o); // true
+
+  // 얕은 복사
+  const person = {
+    name: 'Kim'
+  };
+
+  // 얕은 복사(참조 값을 복사), copy와 person은 동일한 참조 값을 갖는다.
+  const copy = person;
+  console.log(copy === person); // true
+
+  // copy를 통해 객체를 변경한다.
+  copy.name = 'Lee';
+
+  // person을 통해 객체를 변경한다.
+  person.address = 'Seoul';
+
+  // copy와 person은 동일한 객체를 가리킨다.
+  // 따라서 어느 한쪽에서 객체를 변경하면 서로 영향을 주고받는다.
+  console.log(person); // {name: 'Lee', address: 'Seoul'};
+  console.log(copy); // {name: 'Lee', address: 'Seoul'};
+  ```
+
+**[⬆ back to top](#table-of-contents)**
+
 # };
