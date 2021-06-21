@@ -203,25 +203,21 @@ Other Style Guides
   // ES5
   var x = 1, y = 2;
 
-      var obj = {
-        x : x,
-        y : y
-      };
+  var obj = {
+    x : x,
+    y : y
+  };
 
-      console.log(obj); // {x: 1, y: 2}
+  console.log(obj); // {x: 1, y: 2}
 
 
-      // ES6
-      let x = 1, y = 2;
+  // ES6
+  let x = 1, y = 2;
 
-      // 프로퍼티 축약 표현
-      const obj = { x, y };
+  // 프로퍼티 축약 표현
+  const obj = { x, y };
 
-      console.log(obj); // {x: 1, y: 2}
-      ```
-
-  **[⬆ back to top](#table-of-contents)**
-
+  console.log(obj); // {x: 1, y: 2}
   ````
 
 - **계산된 프로퍼티 이름(computed property name)**: 문자열 또는 문자열로 타입 변환할 수 있는 값으로 평가되는 표혀식을 사용해 프로퍼티 키를 동적으로 생성 할 수도 있다.
@@ -279,4 +275,5 @@ Other Style Guides
   obj.sayHi(); // Hi! Lee
   ```
 
+  **[⬆ back to top](#table-of-contents)**
 # };
