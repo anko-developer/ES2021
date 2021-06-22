@@ -24,6 +24,7 @@ Other Style Guides
 1. [Operator](#operator)
 1. [단축 평가](#단축-평가)
 1. [Object](#object)
+1. [Function](#function)
 <!-- 1. [Clean Coding](#references) -->
 
 ## Clean Coding
@@ -334,6 +335,36 @@ Other Style Guides
   // 따라서 어느 한쪽에서 객체를 변경하면 서로 영향을 주고받는다.
   console.log(person); // {name: 'Lee', address: 'Seoul'};
   console.log(copy); // {name: 'Lee', address: 'Seoul'};
+  ```
+
+## Function
+
+- **이상적인 함수는 한 가지 일만 해야 하며 가급적 작게 만들어야 한다.**  
+  따라서 parameter는 최대 3개 이상을 넘지 않는 것을 권장한다. 만약 그 이상의 parameter가 필요하다면 하나의 parameter를 선언하고 객체를 argument로 전달하는 것이 유리하다.
+
+- **함수 호이스팅**: 함수 선언문이 코드의 선두로 끌어 올려진 것처럼 동작하는 자바스크립트 고유의 특징을 함수 호이스팅이라 한다.  
+  함수 표현식으로 함수를 정의하면 함수 호이스팅이 발생하는 것이 아니라 변수 호이스팅이 발생한다. 함수 표현식으로 정의한 함수는 반드시 함수 표현식 이후에 참조 또는 호출해야 한다.  
+  함수 호이스팅은 함수를 호출하기 전에 반드시 함수를 선언해야 한다는 당연한 규칙을 무시한다.  
+  이 같은 문제 때문에 함수 선언문 대신 함수 표현식을 사용할 것을 권장한다.
+
+  ```javascript
+  // 함수 참조
+  console.dir(add); // f add(x,y)
+  console.dir(sub); // undefined
+
+  // 함수 호출
+  console.log(add(2, 5)); // 7
+  console.log()sub(2, 5); // TypeError: sub is not a function
+
+  // 함수 선언문
+  function add(x, y) {
+    return x + y;
+  }
+
+  // 함수 표현식
+  const sub = function (x, y) {
+    return x - y;
+  };
   ```
 
 **[⬆ back to top](#table-of-contents)**
