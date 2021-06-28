@@ -26,6 +26,7 @@ Other Style Guides
 1. [Object](#object)
 1. [Function](#function)
 1. [Scope](#scope)
+1. [Constructor Function](#constructor-function)
 <!-- 1. [Clean Coding](#references) -->
 
 ## Clean Coding
@@ -401,35 +402,37 @@ Other Style Guides
 - **스코프 체인**: 모든 스코프는 하나의 계층적 구조로 연결되며, 모든 지역 스코프의 최상위 스코프는 전역 스코프다. 이렇게 스코프가 계층적으로 연결된 것을 스코프 체인이라 한다.  
   변수를 참조할 때 자바스크립트 엔진은 스코프 체인을 통해 변수를 참조하는 코드의 스코프에서 시작하여 상위 스코프 방향으로 이동하며 선언된 변수를 검색한다.
 - **렉시컬 환경**: 스코프 체인은 실행 컨텍스트의 렉시컬 환경을 단방향으로 연결한 것이다. 전역 렉시컬 환경은 코드가 로드되면 곧바로 생성되고 함수 렉시컬 환경은 함수가 호출되면 곧바로 생성된다.  
-**자바스크립트는 렉시컬 스코프를 따르므로 함수를 어디서 호출했는지가 아니라 함수를 어디서 정의했는지에 따라 상위 스코프를 결정한다. 함수가 호출된 위치는 상위 스코프 결정에 어떠한 영향도 주지 않는다. 즉, 함수의 상위 스코프는 언제나 자신이 정의된 스코프다.**
+  **자바스크립트는 렉시컬 스코프를 따르므로 함수를 어디서 호출했는지가 아니라 함수를 어디서 정의했는지에 따라 상위 스코프를 결정한다. 함수가 호출된 위치는 상위 스코프 결정에 어떠한 영향도 주지 않는다. 즉, 함수의 상위 스코프는 언제나 자신이 정의된 스코프다.**
 
 ## Variable
 
 - **전역 변수의 문제점**  
-**긴 생명 주기**: 생명 주기가 길다. 따라서 메모리 리소스도 오랜 기간 소비한다. 또한 전역 변수의 상태를 변경 할 수 있는 시간도 길고 기회도 많다. 이름이 중복되면 의도치 않은 재할당이 이뤄진다.  
-**스코프 체인 상에서 종점에 존재**: 스코프 체인 상에서 종점에 존재한다. 이는 변수를 검색 할 때 전역 변수가 가장 마지막에 검색된 다는 것을 말한다. 즉, 전역 변수의 검색 속도는 가장 느리다.  
-**네임스페이스의 오염**: 자바스크립트의 가장 큰 문제점 중 하나는 파일이 분리되어 있다 해도 하나의 전역 스코프를 공유한다는 것이다. 따라서 다른 파일 내에서 동일한 이름으로 명명된 전역 변수나 전역 함수가 같은 스코프 내에 존재할 경우 예상치 못한 결과를 가져올 수 있다.
+  **긴 생명 주기**: 생명 주기가 길다. 따라서 메모리 리소스도 오랜 기간 소비한다. 또한 전역 변수의 상태를 변경 할 수 있는 시간도 길고 기회도 많다. 이름이 중복되면 의도치 않은 재할당이 이뤄진다.  
+  **스코프 체인 상에서 종점에 존재**: 스코프 체인 상에서 종점에 존재한다. 이는 변수를 검색 할 때 전역 변수가 가장 마지막에 검색된 다는 것을 말한다. 즉, 전역 변수의 검색 속도는 가장 느리다.  
+  **네임스페이스의 오염**: 자바스크립트의 가장 큰 문제점 중 하나는 파일이 분리되어 있다 해도 하나의 전역 스코프를 공유한다는 것이다. 따라서 다른 파일 내에서 동일한 이름으로 명명된 전역 변수나 전역 함수가 같은 스코프 내에 존재할 경우 예상치 못한 결과를 가져올 수 있다.
 
-- **전역 변수의 사용을 억제하는 방법**: 전역 변수를 반드시 사용해야 할 이유를 찾지 못한다면 지역 변수를 사용해야 한다. 변수의 스코프는 좁을수록 좋다. 전역 변수를 절대 사용하지 말라는 의미가 아니다. 무분별한 전역 변수의 남발은 억제해야 한다는 것이다.  
+- **전역 변수의 사용을 억제하는 방법**: 전역 변수를 반드시 사용해야 할 이유를 찾지 못한다면 지역 변수를 사용해야 한다. 변수의 스코프는 좁을수록 좋다. 전역 변수를 절대 사용하지 말라는 의미가 아니다. 무분별한 전역 변수의 남발은 억제해야 한다는 것이다.
 
   **[즉시 실행 함수]** - 모든 코드를 즉시 실행 함수로 감싸면 모든 변수는 즉시 실행 함수의 지역 변수가 된다.
+
   ```javascript
-  (function() {
+  (function () {
     var foo = 10; // 즉시 실행 함수의 지역 변수
-  }());
+  })();
 
   console.log(foo); // ReferenceError: foo is not defined
   ```
 
   **[네임스페이스 객체]** - 네임스페이스 역할을 담당할 객체를 생성하고 전역 변수처럼 사용하고 싶은 변수를 프로퍼티로 추가하는 방법이다.  
   네임스페이스를 분리해서 식별자 충돌을 방지하는 효과는 있으나 네임스페이스 객체 자체가 전역 변수에 할당되므로 그다지 유용해 보이지는 않는다.
+
   ```javascript
   var MYAPP = {}; // 전역 네임스페이스 객체
 
   MYAPP.name = 'Kim';
   MYAPP.person = {
     address: 'Seoul'
-  }
+  };
 
   console.log(MYAPP.name); // Kim
   console.log(MYAPP.person.address); // Seoul
@@ -437,8 +440,9 @@ Other Style Guides
 
   **[모듈 패턴]]** - 모듈 패턴은 클래스를 모방해서 관련이 있는 변수와 함수를 모아 즉시 실행 함수로 감싸 하나의 모듈을 만든다. 모듈 패턴은 자바스크립트의 강력한 기능인 클로저를 기반으로 동작한다. 모듈 패턴의 특징은 전역 변수의 억제는 물론 캡슐화까지 구현할 수 있다는 것이다.  
   캡슐화는 객체의 상태를 나타내는 프로퍼티와 프로퍼티를 참조하고 조작할 수 있는 동작인 메서드를 하나로 묶는 것을 말한다.
+
   ```javascript
-  var Counter = (function() {
+  var Counter = (function () {
     // private 변수
     var num = 0;
 
@@ -451,7 +455,7 @@ Other Style Guides
         return --num;
       }
     };
-  }());
+  })();
 
   // private 변수는 외부로 노출되지 않는다.
   console.log(num); // undefined
@@ -464,15 +468,18 @@ Other Style Guides
 
   **[ES6 모듈]** - 파일 자체의 독자적인 모듈 스코프를 제공한다. 따라서 모듈 내에서 var 키워드로 선언한 변수는 더는 전역 변수가 아니며 window 객체의 프로퍼티도 아니다.
   script 태그에 type="module" 어트리뷰트를 추가하면 로드된 자바스크립트 파일은 모듈로서 동작한다. 파일 확장자는 mjs를 권장한다.
+
   ```javascript
   <script type="module" src="lib.mjs"></script>
   <script type="module" src="app.mjs"></script>
   ```
+
   지원하지 않는 브라우저가 아직은 많기 때문에 ES6 모듈 기능보다는 Webpack 등의 모듈 번들러를 사용하는 것이 일반적이다.
 
 - **Const**  
   **[ES6 모듈]** - 상수는 상태 유지와 가독성, 유지보수의 편의를 위해 적극적으로 사용해야 한다.  
   상수의 이름은 대문자로 선언해 상수임을 명확히 나타낸다.
+
   ```javascript
   // 세율을 의미하는 0.1은 변경할 수 없는 상수로서 사용될 값이다.
   // 변수 이름을 대문자로 선언해 상수임을 명확히 나타낸다.
@@ -482,12 +489,13 @@ Other Style Guides
   let preTaxPrice = 100;
 
   // 세후 가격
-  let afterTaxPrice = preTaxprice + (preTaxprice * TAX_RATE);
+  let afterTaxPrice = preTaxprice + preTaxprice * TAX_RATE;
 
   console.log(afterTaxPrice); // 110
   ```
 
   **const 키워드와 객체** - const 키워드로 선언된 변수에 객체를 할당한 경우 값을 변경할 수 있다. 변경 가능한 값인 객체는 재할당 없이도 직접 변경이 가능하기 때문이다.
+
   ```javascript
   const person = {
     name: 'Kim'
@@ -497,15 +505,155 @@ Other Style Guides
   person.name = 'Lee';
   console.log(person); // {name: 'Lee'};
   ```
+
   **const 키워드는 재할당을 금지할 뿐 "불변"을 의지하지는 않는다.**
 
 - **let vs const**: 변수 선언에는 기본적으로 const를 사용하고 let은 재할당이 필요한 경우에 한정해 사용하는 것이 좋다.  
-const 키워드를 사용하면 의도치 않은 재할당을 방지하기 때문에 좀 더 안전하다.  
-변수를 선언하는 시점에는 재할당이 필요할지 잘 모르는 경우가 많다. 그리고 객체는 의외로 재할당하는 경우가 드물다. 따라서 변수를 선언할 때는 일단 const 키워드를 사용하자. 반드시 재할당이 필요하다면 그때 const 키워드를 let 키워드로 변경해도 결코 늦지 않다.  
-var와 let, const 키워드는 다음과 같이 사용하는 것을 권장한다.
+  const 키워드를 사용하면 의도치 않은 재할당을 방지하기 때문에 좀 더 안전하다.  
+  변수를 선언하는 시점에는 재할당이 필요할지 잘 모르는 경우가 많다. 그리고 객체는 의외로 재할당하는 경우가 드물다. 따라서 변수를 선언할 때는 일단 const 키워드를 사용하자. 반드시 재할당이 필요하다면 그때 const 키워드를 let 키워드로 변경해도 결코 늦지 않다.  
+  var와 let, const 키워드는 다음과 같이 사용하는 것을 권장한다.
   - ES6를 사용한다면 var 키워드는 사용하지 않는다.
   - 재할당이 필요한 경우에 한정해 let 키워드를 사용한다. 이때 변수의 스코프는 최대한 좁게 만든다.
   - 변경이 발생하지 않고 읽기 전용으로 사용하는(재할당이 필요 없는 상수) 원시 값과 객체에는 const 키워드를 사용한다. const 키워드는 재할당을 금지하므로 var, let 키워드보다 안전하다.
+
+## Constructor Function
+
+- **생성자 함수의 인스턴스 생성과정**  
+   [1. 인스턴스 생성과 this 바인딩] - 암묵적으로 빈 객체가 생성된다. 암묵적으로 생성된 빈 객체, 즉 인스턴스는 this에 바인딩된다.
+
+  ```javascript
+  function Circle(radius) {
+    // 1. 암묵적으로 인스턴스가 생성되고 this에 바인딩된다.
+    console.log(this); // Circle {}
+
+    this.radius = radius;
+    this.getDiameter = function () {
+      return 2 * this.radius;
+    };
+  }
+  ```
+
+  [2. 인스턴스 초기화] - this에 바인딩되어 있는 인스턴스에 프로퍼티나 메서드를 추가하고 생성자 함수가 인수로 전달받은 초기값을 인스턴스 프로퍼티에 할당하여 초기화하거나 고정값을 할당한다.
+
+  ```javascript
+  function Circle(radius) {
+    // 1. 암묵적으로 인스턴스가 생성되고 this에 바인딩된다.
+    console.log(this); // Circle {}
+
+    // 2. this에 바인딩되어 있는 인스턴스를 초기화한다.
+    this.radius = radius;
+    this.getDiameter = function () {
+      return 2 * this.radius;
+    };
+  }
+  ```
+
+  [3. 인스턴스 반환] - 생성자 함수 내부의 모든 처리가 끝나면 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환된다.
+
+  ```javascript
+  function Circle(radius) {
+    // 1. 암묵적으로 인스턴스가 생성되고 this에 바인딩된다.
+    console.log(this); // Circle {}
+
+    // 2. this에 바인딩되어 있는 인스턴스를 초기화한다.
+    this.radius = radius;
+    this.getDiameter = function () {
+      return 2 * this.radius;
+    };
+
+    // 3. 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환된다.
+  }
+
+  // 인스턴스 생성. Circle 생성자 함수는 암묵적으로 this를 반환한다.
+  const circle = new Circle(1);
+  console.log(circle); // Circle {radius: 1, getDiameter: f}
+  ```
+
+  만약 this가 아닌 다른 객체를 명시적으로 반환하면 this가 반환되지 못하고 return 문에 명시한 객체가 반환된다.
+
+  ```javascript
+  function Circle(radius) {
+    // 1. 암묵적으로 인스턴스가 생성되고 this에 바인딩된다.
+    console.log(this); // Circle {}
+
+    // 2. this에 바인딩되어 있는 인스턴스를 초기화한다.
+    this.radius = radius;
+    this.getDiameter = function () {
+      return 2 * this.radius;
+    };
+
+    // 3. 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환된다.
+    // 명시적으로 객체를 반환하면 암묵적인 this 반환이 무시된다.
+    return {};
+  }
+
+  // 인스턴스 생성. Circle 생성자 함수는 암묵적으로 this를 반환한다.
+  const circle = new Circle(1);
+  console.log(circle); // {}
+  ```
+
+  하지만 명시적으로 원시 값을 반환하면 원시 값 반환은 무시되고 this가 반환된다.
+
+  ```javascript
+  function Circle(radius) {
+    // 1. 암묵적으로 인스턴스가 생성되고 this에 바인딩된다.
+    console.log(this); // Circle {}
+
+    // 2. this에 바인딩되어 있는 인스턴스를 초기화한다.
+    this.radius = radius;
+    this.getDiameter = function () {
+      return 2 * this.radius;
+    };
+
+    // 3. 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환된다.
+    // 명시적으로 원시 값을 반환하면 원시 값 반환은 무시되고 암묵적으로 this가 반환된다.
+    return 100;
+  }
+
+  // 인스턴스 생성. Circle 생성자 함수는 암묵적으로 this를 반환한다.
+  const circle = new Circle(1);
+  console.log(circle); // Circle {radius: 1, getDiameter: f}
+  ```
+
+  **이처럼 생성자 함수 내부에서 명시적으로 this가 아닌 다른 값을 반환하는 것은 생성자 함수의 기본 동작을 훼손한다. 따라서 생성자 함수 내부에서 return 문을 반드시 생략해야 한다.**
+
+- **constructor와 non-constructor의 구분**: 자바스크립트 엔진은 함수 정의를 평가하여 함수 객체를 생성할 때 함수 정의 방식에 따라 함수를 constructor와 non-constructor로 구분한다.
+
+  - constructor: 함수 선언문, 함수 표현식, 클래스(클래스도 함수다)
+  - non-constructor: 메서드(ES6 메서드 축약 표현), 화살표 함수
+    <br><br>
+
+  ```javascript
+  // 일반 함수 정의: 함수 선언문, 함수 표현식
+  function foo () {
+
+  }
+  const bar = function () {
+
+  };
+
+  // 프로퍼티 x의 값으로 할당된 것은 일반 함수로 정의된 함수다. 이는 메서드로 인정하지 않는다.
+  const baz = {
+    x: function () {
+
+    }
+  };
+
+  // 일반 함수로 정의된 함수만이 constructor다.
+  new foo(); // foo {}
+  new bar(); // bar {}
+  new baz.x(); x {}
+
+  // 화살표 함수 정의
+  const arrow = () => {};
+  new arrow(); // TypeError: arrow is not a constructor
+
+  // 메서드 정의: ES6의 메서드 축약 표현만 메서드로 인정한다.
+  const obj = {
+    x() {}
+  };
+  new obj.x(); // TypeError: arrow is not a constructor
+  ```
 
 **[⬆ back to top](#table-of-contents)**
 
