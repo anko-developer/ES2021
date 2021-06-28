@@ -26,6 +26,7 @@ Other Style Guides
 1. [Object](#object)
 1. [Function](#function)
 1. [Scope](#scope)
+1. [Variable](#variable)
 1. [Constructor Function](#constructor-function)
 <!-- 1. [Clean Coding](#references) -->
 
