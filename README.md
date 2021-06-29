@@ -519,6 +519,7 @@ Other Style Guides
 
 ## Constructor Function
 
+- **생성자 함수는 일반적으로 첫 문자를 대문자로 기술하는 파스칼 케이스로 명명하여 일반 함수와 구별할 수 있도록 한다.**
 - **생성자 함수의 인스턴스 생성과정**  
    [1. 인스턴스 생성과 this 바인딩] - 암묵적으로 빈 객체가 생성된다. 암묵적으로 생성된 빈 객체, 즉 인스턴스는 this에 바인딩된다.
 
@@ -655,6 +656,54 @@ Other Style Guides
   };
   new obj.x(); // TypeError: arrow is not a constructor
   ```
+
+- **new.target**: ES6에서는 new.target를 지원한다. this와 유사하게 constructor인 모든 함수 내부에서 암묵적인 지역 변수와 같이 사용되며 메타 프로퍼티라고 부른다. IE는 지원하지 않는다.  
+**new 연산자와 함께 생성자 함수로서 호출되면 함수 내부의 new.target은 함수 자신을 가리킨다. new 연산자 없이 일반 함수로서 호출된 함수 내부의 new.target은 undefined다.**  
+따라서 함수 내부의 new.target을 사용하여 new 연산자와 생성자 함수로서 호출했는지 확인하여 그렇지 않은 경우 new 연산자와 함께 재귀 호출을 통해 생성자 함수로서 호출할 수 있다.
+  ```javascript
+  // 생성자 함수
+  function Circle(radius) {
+    // 이 함수가 new 연산자와 함께 호출되지 않았다면 new.target는 undefined다.
+    if (!new.target) {
+      return new Circle(radius);
+    }
+
+    this.radius = radius;
+    this.getDiameter = function () {
+      return 2 * this.radius;
+    };
+  }
+
+  // new 연산자 없이 생성자 함수를 호출하여도 new.target을 통해 생성자 함수로서 호출된다.
+  const circle = Circle(5);
+  console.log(circle.getDiameter());
+  ```
+
+  **[스코프 세이프 생성자 패턴]** - ★★★★★
+  ```javascript
+  // Scope-Safe Constructor Pattern
+  function Circle(radius) {
+    // 생성자 함수가 new 연산자와 함께 호출되면 함수의 선두에서 빈 객체를 생성하고
+    // this에 바인딩한다. 이때 this와 Circle은 포로토타입에 의해 연결된다.
+
+    // 이 함수가 new 연산자와 함께 호출되지 않았다면 이 시점의 this는 전역 객체 window를 가리킨다.
+    // 즉, this와 Circle은 프로토타입에 의해 연결되지 않는다.
+    if (!(this instanceof Circle)) {
+      // new 연산자와 함께 호출하여 생성된 인스턴스를 반환한다.
+      return new Circle(radius);
+    }
+
+    this.radius = radius;
+    this.getDiameter = function () {
+      return 2 * this.radius;
+    };
+  }
+
+  // new 연산자 없이 생성자 함수를 호출하여도 생성자 함수로서 호출된다.
+  const circle = Circle(5);
+  console.log(circle.getDiameter()); // 10
+  ```
+
 
 **[⬆ back to top](#table-of-contents)**
 
