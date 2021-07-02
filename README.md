@@ -28,6 +28,7 @@ Other Style Guides
 1. [Scope](#scope)
 1. [Variable](#variable)
 1. [Constructor Function](#constructor-function)
+1. [Prototype](#prototype)
 <!-- 1. [Clean Coding](#references) -->
 
 ## Clean Coding
@@ -658,8 +659,9 @@ Other Style Guides
   ```
 
 - **new.target**: ES6에서는 new.target를 지원한다. this와 유사하게 constructor인 모든 함수 내부에서 암묵적인 지역 변수와 같이 사용되며 메타 프로퍼티라고 부른다. IE는 지원하지 않는다.  
-**new 연산자와 함께 생성자 함수로서 호출되면 함수 내부의 new.target은 함수 자신을 가리킨다. new 연산자 없이 일반 함수로서 호출된 함수 내부의 new.target은 undefined다.**  
-따라서 함수 내부의 new.target을 사용하여 new 연산자와 생성자 함수로서 호출했는지 확인하여 그렇지 않은 경우 new 연산자와 함께 재귀 호출을 통해 생성자 함수로서 호출할 수 있다.
+  **new 연산자와 함께 생성자 함수로서 호출되면 함수 내부의 new.target은 함수 자신을 가리킨다. new 연산자 없이 일반 함수로서 호출된 함수 내부의 new.target은 undefined다.**  
+  따라서 함수 내부의 new.target을 사용하여 new 연산자와 생성자 함수로서 호출했는지 확인하여 그렇지 않은 경우 new 연산자와 함께 재귀 호출을 통해 생성자 함수로서 호출할 수 있다.
+
   ```javascript
   // 생성자 함수
   function Circle(radius) {
@@ -680,6 +682,7 @@ Other Style Guides
   ```
 
   **[스코프 세이프 생성자 패턴]** - ★★★★★
+
   ```javascript
   // Scope-Safe Constructor Pattern
   function Circle(radius) {
@@ -704,7 +707,67 @@ Other Style Guides
   console.log(circle.getDiameter()); // 10
   ```
 
+## Prototype
 
-**[⬆ back to top](#table-of-contents)**
+- **상속과 프로토타입**
+
+  **[잘못된 예]** - getArea 메서드는 모든 인스턴스가 동일한 내용의 메서드를 사용하므로 단 하나만 생성하여 모든 인스턴스가 공유해서 사용하는 것이 바람직하다. 그런데 Circle 생성자 함수는 인스턴스를 생성할 때마다 getArea 메서드를 중복 생성하고 모든 인스턴스가 중복 소유한다.
+
+  ```javascript
+  function Circle(radius) {
+    this.radius = radius;
+    this.getArea = function () {
+      // Math.PI는 원주율을 나타내는 상수다.
+      return Math.PI * this.radius ** 2;
+    };
+  }
+
+  // 반지름이 1인 인스턴스 생성
+  const circle1 = new Circle(1);
+
+  // 반지름이 2인 인스턴스 생성
+  const circle2 = new Circle(2);
+
+  // Circle 생성자 함수는 인스턴스를 생성할 때마다 동일한 동작을 하는
+  // getArea 메서드를 중복 생성하고 모든 인스턴스가 중복 소유한다.
+  // getArea 메서드는 하나만 생성하여 모든 인스턴스가 공유해서 사용하는 것이 바람직하다.
+
+  console.log(circle1.getArea === circle2.getArea); // false
+
+  console.log(circle1.getArea()); // 3.141592653589793
+  console.log(circle2.getArea()); // 12.566370614359172
+  ```
+
+  **[올바른 예]** - 프로토타입을 기반으로 상속을 구현한다.  
+  상위(부모) 객체 역할을 하는 Circle.prototype의 모든 프로퍼티와 메서드를 상속받는다. Circle 생성자 함수가 생성하는 모든 인스턴스는 getArea 메서드를 상속받아 사용할 수 있다. 즉, 자신의 상태를 나타내는 radius 프로퍼티만 개별적으로 소유하고 내용이 동일한 메서드는 상속을 통해 공유하여 사용하는 것이다.
+
+  ```javascript
+  function Circle(radius) {
+    this.radius = radius;
+  }
+
+  // Circle 생성자 함수가 생성한 모든 인스턴스가 getArea 메서드를
+  // 공유해서 사용할 수 있도록 프로토타입에 추가한다.
+  // 프로토타입은 Circle 생성자 함수의 prototype 프로퍼티에 바인딩되어 있다.
+  Circle.prototype.getArea = function () {
+    return Math.PI * this.radius ** 2;
+  };
+
+  // 인스턴스 생성
+  const circle1 = new Circle(1);
+  const circle2 = new Circle(2);
+
+  // Circle 생성자 함수가 생성한 모든 인스턴스는 부모 객체의 역할을 하는
+  // 프로토타입 Circle.prototype으로부터 getArea 메서드를 상속받는다.
+  // 즉, Circle 생성자 함수가 생성하는 모든 인스턴스는 하나의 getArea 메서드를 공유한다.
+  console.log(circle1.getArea === circle2.getArea); // true
+
+  console.log(circle1.getArea()); // 3.141592653589793
+  console.log(circle2.getArea()); // 12.566370614359172
+  ```
+
+- **함수 객체의 prototype 프로퍼티**: 모든 객체가 가지고 있는(엄밀히 말하면 Object.prototype으로부터 상속받은) **proto** 접근자 프로퍼티와 함수 객체만이 가지고 있는 prototype 프로퍼티는 결국 동일한 프로퍼티타입을 가리킨다. 하지만 프로퍼티를 사용하는 주체가 다르다.
+
+  **[⬆ back to top](#table-of-contents)**
 
 # };
