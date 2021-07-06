@@ -768,6 +768,71 @@ Other Style Guides
 
 - **함수 객체의 prototype 프로퍼티**: 모든 객체가 가지고 있는(엄밀히 말하면 Object.prototype으로부터 상속받은) **proto** 접근자 프로퍼티와 함수 객체만이 가지고 있는 prototype 프로퍼티는 결국 동일한 프로퍼티타입을 가리킨다. 하지만 프로퍼티를 사용하는 주체가 다르다.
 
+- **프로토타입 체인**: 프로토타입의 프로토타입은 언제나 Object.prototype이다. 객체의 프로퍼티(메서드 포함)에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티가 없다면 [[Prototype]] 내부 슬롯의 참조를 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다. 이를 프로토타입 체인이라 한다.  
+  **프로토타입 체인은 자바스크립트가 객체지향 프로그래밍의 상속을 구현하는 메커니즘이다.**
+
+- **오버라이딩과 프로퍼티 섀도잉**: 프로토타입이 소유한 프로퍼티(메서드 포함)를 프로토타입 프로퍼티, 인스턴스가 소유한 프로퍼티를 인스턴스 프로퍼티라고 부른다.  
+  프로토타입 프로퍼티와 같은 이름의 프로퍼티를 인스턴스에 추가하면 프로토타입 체인을 따라 프로토타입 프로퍼티를 검색하여 프로토타입 프로퍼티를 덮어쓰는 것이 아니라 인스턴스 프로퍼티로 추가한다. 이때 인스턴스 메서드 sayHello는 프로토타입 메서드 sayHello를 오버라이딩했고 프로토타입 메서드 sayHello는 가려진다. 이처럼 **상속 관계에 의해 프로퍼티가 가려지는 현상을 프로퍼티 섀도잉**이라 한다.
+
+  ```javascript
+  const Person = (function () {
+    function Person(name) {
+      this.name = name;
+    }
+
+    // 프로토타입 메서드
+    Person.prototype.sayHello = function () {
+      console.log(`Hi My name is ${this.name}`);
+    };
+
+    // 생성자 함수를 반환
+    return Person;
+  })();
+
+  const me = new Person('Kim');
+
+  // 인스턴스 메서드
+  me.sayHello = function () {
+    console.log(`Hey! My name is ${this.name}`);
+  };
+
+  // 인스턴스 메서드가 호출된다. 프로토타입 메서드는 인스턴스 메서드에 의해 가려진다.
+  me.sayHello(); // Hey! My name is Kim
+  ```
+
+  프로퍼티를 삭제하는 경우도 마찬가지다.
+
+  ```javascript
+  // 인스턴스 메서드를 삭제한다.
+  delete me.sayHello;
+
+  // 인스턴스에는 sayHello 메서드가 없으므로 프로토타입 메서드가 호출된다.
+  me.sayHello; // Hi My name is Kim
+
+  // 다시 한번 sayHello 메서드를 삭제하여 프로토타입 메서드를 삭제 해봐도
+  // 프로토타입 체인을 통해 프로토타입 메서드가 삭제되지 않는다.
+  delete me.sayHello;
+
+  // 프로토타입 메서드가 호출된다.
+  me.sayHello(); // Hi My name is Kim
+  ```
+
+  이와 같이 하위 객체를 통해 프로토타입의 프로퍼티를 변경 또는 삭제하는 것은 불가능하다. 하위 객체를 통해 프로토타입에 get 액세스는 허용되나 set 액세스는 허용되지 않는다.  
+  프로토타입 프로퍼티를 변경 또는 삭제하려면 하위 객체를 통해 프로토타입 체인으로 접근하는 것이 아니라 프로토타입에 직접 접근해야 한다.
+
+  ```javascript
+  // 프로토타입 메서드 변경
+  Person.prototype.sayHello = function () {
+    console.log(`Hey! My name is ${this.name}`);
+  };
+
+  me.sayHello(); // Hey! My name is Kim
+
+  // 프로토타입 메서드 삭제
+  delete Person.prototype.sayHello;
+  me.sayHello(); // TypeError: me.sayHello is not a function
+  ```
+
   **[⬆ back to top](#table-of-contents)**
 
 # };
