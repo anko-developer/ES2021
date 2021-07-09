@@ -800,7 +800,7 @@ Other Style Guides
   me.sayHello(); // Hey! My name is Kim
   ```
 
-  프로퍼티를 삭제하는 경우도 마찬가지다.
+  메서드를 삭제하는 경우도 마찬가지다.
 
   ```javascript
   // 인스턴스 메서드를 삭제한다.
@@ -831,6 +831,109 @@ Other Style Guides
   // 프로토타입 메서드 삭제
   delete Person.prototype.sayHello;
   me.sayHello(); // TypeError: me.sayHello is not a function
+  ```
+
+- **정적 프로퍼티/메서드**: 정적 프로퍼티/메서드는 생성자 함수로 인스턴스를 생성하지 않아도 참조/호출할 수 있는 프로퍼티/메서드를 말한다.  
+  <br>
+  아래는 생성자 함수가 생성한 인스턴스는 자신의 프로토타입 체인에 속한 객체의 프로퍼티/메서드에 접근할 수 있다. 하지만 정적 프로퍼티/메서드는 인스턴스의 프로토타입 체인에 속한 객체의 프로퍼티/메서드가 아니므로 인스턴스로 접근할 수 없다.
+
+  ```javascript
+  // 생성자 함수
+  function Person(name) {
+    this.name = name;
+  }
+
+  // 프로토타입 메서드
+  Person.prototype.sayHello = function () {
+    console.log(`Hi! My name is ${this.name}`);
+  };
+
+  // 정적 프로퍼티
+  Person.staticProp = 'static prop';
+
+  // 정적 메서드
+  Person.staticMethod = function () {
+    console.log('staticMethod');
+  };
+
+  const me = new Person('Kim');
+
+  // 생성자 함수에 추가한 정적 프로퍼티/메서드는 생성자 함수로 참조/호출한다.
+  Person.staticMethod(); // staticMethod
+
+  // 정적 프로퍼티/메서드는 생성자 함수가 생성한 인스턴스로 참조/호출할 수 없다.
+  // 인스턴스 참조/호출할 수 있는 프로퍼티/메서드는 프로토타입 체인 상 존재해야 한다.
+  me.staticMethod(); // TypeError: me.staticMethod is not a function
+  ```
+
+  프로토타입 메서드를 호출하려면 인스턴스를 생성해야 하지만 정적 메서드는 인스턴스를 생성하지 않아도 호출할 수 있다.
+
+  ```javascript
+  function Foo() {}
+
+  // 프로토타입 메서드
+  // this를 참조하지 않는 프로토타입 메서드는 정적 메서드로 변경하여도 동일한 효과를 얻을 수 있다.
+  Foo.prototype.x = function () {
+    console.log('x');
+  };
+
+  const foo = new Foo();
+  // 프로토타입 메서드를 호출하려면 인스턴스를 생성해야 한다.
+  foo.x(); // x
+
+  // 정적 메서드
+  Foo.x = function () {
+    console.log('x');
+  };
+
+  // 정적 메서드는 인스턴스를 생성하지 않아도 호출할 수 있다.
+  Foo.x(); // x
+  ```
+
+- **프로퍼티 존재 확인**  
+  **[in 연산자]** - in 연산자는 객체 내에 특정 프로퍼티가 존재하는지 여부를 확인한다.
+
+  ```javascript
+  /**
+   * key: 프로퍼티 키를 나타내는 문자열
+   * object: 객체로 평가되는 표현식
+   */
+
+  key in object;
+
+  const person = {
+    name: 'Kim',
+    address: 'Seoul'
+  };
+
+  // person 객체에 name 프로퍼티가 존재한다.
+  console.log('name' in person); // true
+  // person 객체에 age 프로퍼티가 존재하지 않는다.
+  console.log('age' in person); // false
+
+  // person 객체에는 toString이라는 프로퍼티가 없지만 ture 값이 나온다.
+  // 이는 in 연산자가 person 객체가 속한 프로토타입 체인 상에 존재하는 모든 프로토타입에서 toString 프로퍼티를 검색했기 때문이다.
+  // toString은 Object.prototype의 메서드다.
+  console.log('toString' in person); // true
+  ```
+
+  **[Reflect.has]** - in 연산자 대신 ES6에서 도입된 Reflect.has 메서드를 사용할 수도 있다. Reflect.has 메서드는 in 연산자와 동일하게 동작한다.
+
+  ```javascript
+  const person = { name: 'Kim' };
+
+  console.log(Reflect.has(person, 'name')); // true
+  console.log(Reflect.has(person, 'toString')); // true
+  ```
+
+  **[Object.prototype.hasOwnProperty]**: Object.prototype.hasOwnProperty 메서드를 사용해도 객체에 특정 프로퍼티가 존재하는지 확인할 수 있다.  
+  Object.prototype.hasOwnProperty 메서드는 이름에서 알 수 있듯이 인수로 전달받은 프로퍼티 키가 객체 고유의 프로퍼티 키인 경우에만 true를 반환하고 상속받은 프로토타입의 프로퍼티 키인 경우 false를 반환한다.
+
+  ```javascript
+  console.log(person.hasOwnProperty('name')); // true
+  console.log(person.hasOwnProperty('age')); // false
+
+  console.log(person.hasOwnProperty('toString')); // false
   ```
 
   **[⬆ back to top](#table-of-contents)**
