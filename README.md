@@ -938,140 +938,191 @@ Other Style Guides
 
 - **프로퍼티 열거**: 객체의 모든 프로퍼티를 순회하며 열거하려면 for ... in 문을 사용한다.
 
-```javascript
-for (변수선언문 in 객체) { ... };
+  ```javascript
+  for (변수선언문 in 객체) { ... };
 
-const person = {
-  name: 'Kim',
-  address: 'Seoul'
-};
+  const person = {
+    name: 'Kim',
+    address: 'Seoul'
+  };
 
-// for...in 문의 변수 prop에 peroson  객체의 프로퍼티 키가 할당된다.
-// for...in 문도 객체가 상속받은 모든 프로토타입의 프로퍼티를 열거한다.
-// 하지만 toString과 같은 Object.prototype의 프로퍼티가 열거되지 않는다.
-for (const key in person) {
-  console.log(key + ': ' + person[key]);
-}
-
-// name: Kim
-// address: Seoul
-```
-
-for in 문은 in 연산자처럼 순회 대상 객체의 프로퍼티뿐만 아니라 상속받은 프로토타입의 프로퍼티까지 열거한다. 하지만 위 예제의 경우 toString과 같은 Object.prototype의 프로퍼티가 열거되지 않는다.  
-이는 toString 메서드가 열거할 수 없도록 정의되어 있는 프로퍼티이기 때문이다. Object.prototype.string 프로퍼티의 프로퍼티 어트리뷰트 [[Enumerable]]의 값이 false이기 때문이다. 이 어트리뷰트는 프로퍼티의 열거 가능 여부를 나타내며 불리언 값을 갖는다.  
-<br>
-**for...in 문은 객체의 프로토타입 체인 상에 존재하는 모든 프로토타입의 프로퍼티 중에서 프로퍼티 어트리뷰트 [[Enumerable]]의 값이 true인 프로퍼티를 순회하며 열거한다.**
-
-```javascript
-const person = {
-  name: 'Kim',
-  address: 'Seoul',
-  __proto__: { age: 20 }
-};
-
-for (const key in person) {
-  console.log(key + ': ' + person[key]);
-}
-
-// name: Kim
-// address: Seoul
-// age: 20
-```
-
-for...in 문은 프로퍼티 키가 심벌인 프로퍼티는 열거하지 않는다.
-
-```javascript
-const sym = Symbol();
-const obj = {
-  a: 1,
-  [sym]: 10
-};
-
-for (const key in obj) {
-  console.log(key + ': ' + obj[key]);
-}
-
-// a: 1
-```
-
-상속받은 프로퍼티는 제외하고 객체 자신의 프로퍼티만 열거하려면 Object.prototype.hasOwnProperty 메서드를 사용하여 객체 자신의 프로퍼티인지 확인해야 한다.
-
-```javascript
-const person = {
-  name: 'Kim',
-  address: 'Seoul',
-  __proto__: { age: 20 }
-};
-
-for (const key in person) {
-  // 객체 자신의 프로퍼티인지 확인한다.
-  if (!person.hasOwnProperty(key)) {
-    continue;
+  // for...in 문의 변수 prop에 peroson  객체의 프로퍼티 키가 할당된다.
+  // for...in 문도 객체가 상속받은 모든 프로토타입의 프로퍼티를 열거한다.
+  // 하지만 toString과 같은 Object.prototype의 프로퍼티가 열거되지 않는다.
+  for (const key in person) {
+    console.log(key + ': ' + person[key]);
   }
-  console.log(key + ': ' + person[key]);
-}
-```
 
-for...in 문은 프로퍼티를 열거할 때 순서를 보장하지 않으므로 주의해야한다. 하지만 대부분 모던 브라우저는 순서를 보장하고 숫자(사실은 문자열)인 프로퍼티 키에 대해서는 정렬을 실시한다.
+  // name: Kim
+  // address: Seoul
+  ```
 
-```javascript
-const obj = {
-  2: 2,
-  3: 3,
-  1: 1,
-  b: 'b',
-  a: 'a'
-};
+  for in 문은 in 연산자처럼 순회 대상 객체의 프로퍼티뿐만 아니라 상속받은 프로토타입의 프로퍼티까지 열거한다. 하지만 위 예제의 경우 toString과 같은 Object.prototype의 프로퍼티가 열거되지 않는다.  
+  이는 toString 메서드가 열거할 수 없도록 정의되어 있는 프로퍼티이기 때문이다. Object.prototype.string 프로퍼티의 프로퍼티 어트리뷰트 [[Enumerable]]의 값이 false이기 때문이다. 이 어트리뷰트는 프로퍼티의 열거 가능 여부를 나타내며 불리언 값을 갖는다.  
+  <br>
+  **for...in 문은 객체의 프로토타입 체인 상에 존재하는 모든 프로토타입의 프로퍼티 중에서 프로퍼티 어트리뷰트 [[Enumerable]]의 값이 true인 프로퍼티를 순회하며 열거한다.**
 
-for (const key in obj) {
-  if (!obj.hasOwnProperty(key)) continue;
-  consloe.log(key + ': ' + obj[key]);
-}
+  ```javascript
+  const person = {
+    name: 'Kim',
+    address: 'Seoul',
+    __proto__: { age: 20 }
+  };
 
-/*
-1: 1
-2: 2
-3: 3
-b: b
-a: a
-*/
-```
+  for (const key in person) {
+    console.log(key + ': ' + person[key]);
+  }
 
-배열에는 for...in 문을 사용하지 말고 일반적으로 for 문이나 for...of 문 또는 Array.prototype.forEach 메서드를 사용하기를 권장한다.  
-사실 배열도 객체이므로 프로퍼티와 상속받은 프로퍼티가 포함될 수 있다.  
-<br>
-**[Object.keys/values/entries 메서드]** - 객체 자신의 고유 프로퍼티만을 열거하기 위해서는 for...in 문을 사용하는 것보다 Object.keys/values/entries 메서드를 사용하는 것을 권장한다.  
-<br>
-Object.keys 메서드는 객체 자신의 열거 가능한 프로퍼티 **키를 배열로 반환**한다.
+  // name: Kim
+  // address: Seoul
+  // age: 20
+  ```
 
-```javascript
-const person = {
-  name: 'Kim',
-  address: 'Seoul',
-  __proto__: { age: 20 }
-};
+  for...in 문은 프로퍼티 키가 심벌인 프로퍼티는 열거하지 않는다.
 
-console.log(Object.keys(person)); // ["name", "address"]
-```
+  ```javascript
+  const sym = Symbol();
+  const obj = {
+    a: 1,
+    [sym]: 10
+  };
 
-ES8에서 도입된 Object.values 메서드는 객체 자신의 열거 가능한 프로퍼티 **값을 배열로 반환**한다.
+  for (const key in obj) {
+    console.log(key + ': ' + obj[key]);
+  }
 
-```javascript
-console.log(Object.values(person)); // ["Lee", "Seoul"]
-```
+  // a: 1
+  ```
 
-ES8에서 도입된 Object.entries 메서드는 객체 자신의 열거 가능한 프로퍼티 키와 값의 쌍의 배열을 배열에 담아 반환한다.
+  상속받은 프로퍼티는 제외하고 객체 자신의 프로퍼티만 열거하려면 Object.prototype.hasOwnProperty 메서드를 사용하여 객체 자신의 프로퍼티인지 확인해야 한다.
 
-```javascript
-console.log(Object.entries(person)); // [["name", "Kim"], ["address", "Seoul"]]
+  ```javascript
+  const person = {
+    name: 'Kim',
+    address: 'Seoul',
+    __proto__: { age: 20 }
+  };
 
-Object.entries(person).forEach(([key, value]) => console.log(key, value));
+  for (const key in person) {
+    // 객체 자신의 프로퍼티인지 확인한다.
+    if (!person.hasOwnProperty(key)) {
+      continue;
+    }
+    console.log(key + ': ' + person[key]);
+  }
+  ```
 
-/*
-name Lee
-address Seoul
-*/
-```
+  for...in 문은 프로퍼티를 열거할 때 순서를 보장하지 않으므로 주의해야한다. 하지만 대부분 모던 브라우저는 순서를 보장하고 숫자(사실은 문자열)인 프로퍼티 키에 대해서는 정렬을 실시한다.
+
+  ```javascript
+  const obj = {
+    2: 2,
+    3: 3,
+    1: 1,
+    b: 'b',
+    a: 'a'
+  };
+
+  for (const key in obj) {
+    if (!obj.hasOwnProperty(key)) continue;
+    consloe.log(key + ': ' + obj[key]);
+  }
+
+  /*
+  1: 1
+  2: 2
+  3: 3
+  b: b
+  a: a
+  */
+  ```
+
+  배열에는 for...in 문을 사용하지 말고 일반적으로 for 문이나 for...of 문 또는 Array.prototype.forEach 메서드를 사용하기를 권장한다.  
+  사실 배열도 객체이므로 프로퍼티와 상속받은 프로퍼티가 포함될 수 있다.  
+  <br>
+  **[Object.keys/values/entries 메서드]** - 객체 자신의 고유 프로퍼티만을 열거하기 위해서는 for...in 문을 사용하는 것보다 Object.keys/values/entries 메서드를 사용하는 것을 권장한다.  
+  <br>
+  Object.keys 메서드는 객체 자신의 열거 가능한 프로퍼티 **키를 배열로 반환**한다.
+
+  ```javascript
+  const person = {
+    name: 'Kim',
+    address: 'Seoul',
+    __proto__: { age: 20 }
+  };
+
+  console.log(Object.keys(person)); // ["name", "address"]
+  ```
+
+  ES8에서 도입된 Object.values 메서드는 객체 자신의 열거 가능한 프로퍼티 **값을 배열로 반환**한다.
+
+  ```javascript
+  console.log(Object.values(person)); // ["Lee", "Seoul"]
+  ```
+
+  ES8에서 도입된 Object.entries 메서드는 객체 자신의 열거 가능한 프로퍼티 키와 값의 쌍의 배열을 배열에 담아 반환한다.
+
+  ```javascript
+  console.log(Object.entries(person)); // [["name", "Kim"], ["address", "Seoul"]]
+
+  Object.entries(person).forEach(([key, value]) => console.log(key, value));
+
+  /*
+  name Lee
+  address Seoul
+  */
+  ```
+
+## strict mode(엄격모드), ESLint(정적 분석 도구)
+
+- **strict mode**: 자바스크립트 언어의 문법을 좀 더 엄격히 적용하여 오류를 발생시킬 가능성이 높거나 자바스크립트 엔진의 최적화 작업에 문제를 일으킬 수 있는 코드에 대해 명시적인 에러를 발생시킨다.
+  **[전역에 strict mode 적용하는 것은 피하자]**
+  ```html
+  <body>
+    <script>
+      'use strict';
+    </script>
+    <script>
+      x = 1; // 에러가 발생하지 않는다.
+      console.log(x); // 1
+    </script>
+    <script>
+      'use strict';
+
+      y = 1; // ReferenceError: y is not defined
+      console.log(y);
+    </script>
+  </body>
+  ```
+
+  스크립트 단위로 적용된 strict mode는 다른 스크립트에 영향을 주지 않고 해당 스크립트에 한정되어 적용된다.  
+  하지만 strict mode 스크립트와 non-strict mode 스크립트를 혼용하는 것은 오류를 발생시킬 수 있다. 특히 외부 서드파티 라이브러리를 사용하는 겨우 라이브러리가 non-strict mode인 경우도 있기 때문에 전역 strict mode를 적용하는 것은 바람직하지 않다. 이러한 경우 즉시 실행 함수로 스크립트 전체를 감싸서 스코프를 구분하고 즉시 실행 함수의 선두에 strict mode를 적용한다.
+  
+  ```javascript
+  // 즉시 실행 함수의 선두에 strict mode 적용
+  (function() {
+    'use strict';
+
+  }());
+  ```
+
+  **[함수 단위로 strict mode를 적용하는 것도 피하자]**: 어떤 함수에는 strict mode를 적용하고 어떤 함수는 strict mode를 적용하지 않는 것은 바람직하지 않으며 모든 함수에 일일이 strict mode를 적용하는 것은 번거로운 일이다. 그리고 strict mode가 적용된 함수가 참조할 함수 외부의 컨텍스트에 strict mode를 적용하지 않는다면 이 또한 문제가 발생할 수 있다.  
+  **따라서 strict mode는 즉시 실행 함수롷 감싼 스크립트 단위로 적용하는 것이 바람직하다.**
+  ```javascript
+  (functuon() {
+    // non-strict mode
+    var let = 10; // 에러가 발생하지 않는다.
+
+    function foo() {
+      'use strict';
+
+      let = 20; // SyntaxError: Unexpected strict mode reserved word
+    }
+  }());
+  ```
+
+- **ESLint**: ESLint 같은 린트 도구를 사용해도 strict mode와 유사한 효과를 얻을 수 있다. 린트 도구는 정적 분석기능을 통해 소스코드를 실행하기 전에 소스코드를 스캔하여 문법적 오류만이 아니라 잠재적 오류까지 찾아내고 오류의 원인을 리포팅해주는 유용한 도구다.  
+**린트 도구는 strict mode가 제한하는 오류는 물론 코딩 컨벤션을 설정 파일 형태로 정의하고 강제할 수 있기 때문에 더욱 강력한 효과를 얻을 수 있다. 따라서 strict mode보다 린트 도구의 사용을 선호한다.**
 
 **[⬆ back to top](#table-of-contents)**
 
