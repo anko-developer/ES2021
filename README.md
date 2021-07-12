@@ -226,7 +226,7 @@ Other Style Guides
   console.log(obj); // {x: 1, y: 2}
   ```
 
-- **계산된 프로퍼티 이름(computed property name)**: 문자열 또는 문자열로 타입 변환할 수 있는 값으로 평가되는 표혀식을 사용해 프로퍼티 키를 동적으로 생성 할 수도 있다.
+- **계산된 프로퍼티 이름(computed property name)**: 문자열 또는 문자열로 타입 변환할 수 있는 값으로 평가되는 표현식을 사용해 프로퍼티 키를 동적으로 생성 할 수도 있다.
 
   ```javascript
   // ES5
@@ -1077,6 +1077,7 @@ Other Style Guides
 
 - **strict mode**: 자바스크립트 언어의 문법을 좀 더 엄격히 적용하여 오류를 발생시킬 가능성이 높거나 자바스크립트 엔진의 최적화 작업에 문제를 일으킬 수 있는 코드에 대해 명시적인 에러를 발생시킨다.
   **[전역에 strict mode 적용하는 것은 피하자]**
+
   ```html
   <body>
     <script>
@@ -1097,17 +1098,17 @@ Other Style Guides
 
   스크립트 단위로 적용된 strict mode는 다른 스크립트에 영향을 주지 않고 해당 스크립트에 한정되어 적용된다.  
   하지만 strict mode 스크립트와 non-strict mode 스크립트를 혼용하는 것은 오류를 발생시킬 수 있다. 특히 외부 서드파티 라이브러리를 사용하는 겨우 라이브러리가 non-strict mode인 경우도 있기 때문에 전역 strict mode를 적용하는 것은 바람직하지 않다. 이러한 경우 즉시 실행 함수로 스크립트 전체를 감싸서 스코프를 구분하고 즉시 실행 함수의 선두에 strict mode를 적용한다.
-  
+
   ```javascript
   // 즉시 실행 함수의 선두에 strict mode 적용
-  (function() {
+  (function () {
     'use strict';
-
-  }());
+  })();
   ```
 
   **[함수 단위로 strict mode를 적용하는 것도 피하자]**: 어떤 함수에는 strict mode를 적용하고 어떤 함수는 strict mode를 적용하지 않는 것은 바람직하지 않으며 모든 함수에 일일이 strict mode를 적용하는 것은 번거로운 일이다. 그리고 strict mode가 적용된 함수가 참조할 함수 외부의 컨텍스트에 strict mode를 적용하지 않는다면 이 또한 문제가 발생할 수 있다.  
   **따라서 strict mode는 즉시 실행 함수롷 감싼 스크립트 단위로 적용하는 것이 바람직하다.**
+
   ```javascript
   (functuon() {
     // non-strict mode
@@ -1122,7 +1123,7 @@ Other Style Guides
   ```
 
 - **ESLint**: ESLint 같은 린트 도구를 사용해도 strict mode와 유사한 효과를 얻을 수 있다. 린트 도구는 정적 분석기능을 통해 소스코드를 실행하기 전에 소스코드를 스캔하여 문법적 오류만이 아니라 잠재적 오류까지 찾아내고 오류의 원인을 리포팅해주는 유용한 도구다.  
-**린트 도구는 strict mode가 제한하는 오류는 물론 코딩 컨벤션을 설정 파일 형태로 정의하고 강제할 수 있기 때문에 더욱 강력한 효과를 얻을 수 있다. 따라서 strict mode보다 린트 도구의 사용을 선호한다.**
+  **린트 도구는 strict mode가 제한하는 오류는 물론 코딩 컨벤션을 설정 파일 형태로 정의하고 강제할 수 있기 때문에 더욱 강력한 효과를 얻을 수 있다. 따라서 strict mode보다 린트 도구의 사용을 선호한다.**
 
 **[⬆ back to top](#table-of-contents)**
 
