@@ -833,6 +833,72 @@ Other Style Guides
   me.sayHello(); // TypeError: me.sayHello is not a function
   ```
 
+- **프로토타입 교체**: 부모 객체인 프로토타입을 동적으로 변경할 수 있다는 의미인데, 이러한 특징을 활용하여 객체 간의 상속 관계를 동적으로 변경할 수 있다. 프로토타입은 생성자 함수 또는 인스턴스에 의해 교체할 수 있다.
+
+  **[생성자 함수에 의한 프로토타입의 교체]**
+
+  ```javascript
+  const Person = (function () {
+    function Person(name) {
+      this.name = name;
+    }
+
+    // 생성자 함수의 prototype 프로퍼티를 통해 프로토타입을 교체
+    // 객체 리터럴로 prototype을 교체하면 객체 리터럴에는 constructor 프로퍼티가 존재하지 않는다.
+    // 따라서 인스턴스를 할당 한 아래의 me 객체에서 생성자 함수를 검색하면 Person이 아닌 Object가 나온다.
+    // 이처럼 프로토타입을 교체하면 constructor 프로퍼티와 생성자 함수 간의 연결이 파괴된다.
+    Person.prototype = {
+      constructor: Person, // 프로토타입을 교체한 객체 리터럴에 constructor 프로퍼티를 추가하여 프로토타입의 constructor 프로퍼티를 되살린다.
+      sayHello() {
+        console.log(`Hi! My name is ${this.name}`);
+      }
+    };
+
+    // 객체 리터럴 방식이 아니라면 constructor 프로퍼티가 생성 된다.
+    // Person.prototype.sayHello = function() {
+    //   console.log('test');
+    // }
+    return Person;
+  })();
+
+  const me = new Person('Kim');
+  console.log(me.constructor); // Person
+  ```
+
+  **[인스턴스에 의한 프로토타입의 교체]** - 프로토타입은 생성자 함수의 prototype 프로퍼티뿐만 아니라 인스턴스의 **proto** 접근자 프로퍼티(또는 Object.getPrototypeOf 메서드)를 통해 접근할 수 있다. 따라서 인스턴스의 **proto** 접근자 프로퍼티(또는 Object.getPrototypeOf 메서드)를 통해 프로토타입을 교체할 수 있다.
+
+  ```javascript
+  function Person(name) {
+    this.name = name;
+  }
+
+  const me = new Person('Kim');
+
+  // 프로토타입으로 교체할 객체
+  const parent = {
+    sayHello() {
+      console.log(`Hi! My name is ${this.name}`);
+    }
+  };
+
+  // ① me 객체의 프로토타입을 parent 객체로 교체한다.
+  Object.setPrototypeOf(me, parent);
+
+  // 위 코드는 아래의 코드와 동일하게 동작한다.
+  // me.__proto__ = parent;
+
+  my.sayHello(); // Hi! My name is Kim
+  ```
+
+  ①에서 me 객체의 프로토타입을 parent 객체로 교체했다.  
+  '생성자 함수에 의한 프로토타입의 교체'와 마찬가지로 프로토타입으로 교체한 객체에는 constructor 프로퍼티가 없으므로 constructor 프로퍼티와 생성자 함수 간의 연결이 파괴된다. 따라서 프로토타입의 constructor 프로퍼티로 me 객체의 생성자 함수를 검색하면 Person이 아닌 Object가 나온다.
+
+  ```javascript
+  // 프로토타입을 교체하면 constuctor 프로퍼티와 생성자 함수 간의 연결이 파괴된다.
+  console.log(me.constructor === Person); // false
+  console.log(me.constructor === Object); // true
+  ```
+
 - **정적 프로퍼티/메서드**: 정적 프로퍼티/메서드는 생성자 함수로 인스턴스를 생성하지 않아도 참조/호출할 수 있는 프로퍼티/메서드를 말한다.  
   <br>
   아래는 생성자 함수가 생성한 인스턴스는 자신의 프로토타입 체인에 속한 객체의 프로퍼티/메서드에 접근할 수 있다. 하지만 정적 프로퍼티/메서드는 인스턴스의 프로토타입 체인에 속한 객체의 프로퍼티/메서드가 아니므로 인스턴스로 접근할 수 없다.
