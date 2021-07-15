@@ -29,6 +29,7 @@ Other Style Guides
 1. [Variable](#variable)
 1. [Constructor Function](#constructor-function)
 1. [Prototype](#prototype)
+1. [Strict mode](#strict-mode)
 <!-- 1. [Clean Coding](#references) -->
 
 ## Clean Coding
@@ -1139,7 +1140,7 @@ Other Style Guides
   */
   ```
 
-## strict mode(엄격모드), ESLint(정적 분석 도구)
+## strict mode
 
 - **strict mode**: 자바스크립트 언어의 문법을 좀 더 엄격히 적용하여 오류를 발생시킬 가능성이 높거나 자바스크립트 엔진의 최적화 작업에 문제를 일으킬 수 있는 코드에 대해 명시적인 에러를 발생시킨다.
   **[전역에 strict mode 적용하는 것은 피하자]**
