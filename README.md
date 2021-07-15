@@ -1192,6 +1192,42 @@ Other Style Guides
 - **ESLint**: ESLint 같은 린트 도구를 사용해도 strict mode와 유사한 효과를 얻을 수 있다. 린트 도구는 정적 분석기능을 통해 소스코드를 실행하기 전에 소스코드를 스캔하여 문법적 오류만이 아니라 잠재적 오류까지 찾아내고 오류의 원인을 리포팅해주는 유용한 도구다.  
   **린트 도구는 strict mode가 제한하는 오류는 물론 코딩 컨벤션을 설정 파일 형태로 정의하고 강제할 수 있기 때문에 더욱 강력한 효과를 얻을 수 있다. 따라서 strict mode보다 린트 도구의 사용을 선호한다.**
 
+## 빌트인 객체
+
+- **전역 객체**: 전역 객체는 코드가 실행되기 이전 단계에 자바스크립트 엔진에 의해 어떤 객체보다도 먼저 생성되는 특수한 객체이며, 어떤 객체에도 속하지 않은 최상위 객체다.  
+  전역 객체는 자바스크립트 환경에 따라 지칭하는 이름이 제각각이다. 브라우저 환경에서는 window(또는 self, this, frames)가 전역 객체를 가리키지만 Node.js 환경에서는 global이 전역 객체를 가리킨다.
+
+  **[globalThis]** - ES11(ECMAScript 11)에서 도입된 globalThis는 브라우저 환경과 Node.js 환경에서 전역 객체를 가리키던 다양한 식별자를 통일한 식별자다. globalThis는 표준 사양이므로 ECMAScript 표준 사양을 준수하는 모든 환경에서 사용할 수 있다.
+
+  ```javascript
+  // 브라우저 환경
+  globalThis === this; // true
+  globalThis === window; // true
+  globalThis === self; // true
+  globalThis === frames; // true
+
+  // Node.js 환경(12.0.0 이상)
+  globalThis === this; // true
+  globalThis === global; // true
+  ```
+
+  전역 객체는 자신은 어떤 객체의 프로퍼티도 아니며 객체의 계층적 구조상 표준 빌트인 객체와 호스트 객체를 프로퍼티로 소유한다는 것을 말한다.
+
+  ```javascript
+  // var 키워드로 선언한 전역 변수
+  var foo = 1;
+  console.log(window.foo); // 1
+
+  // 선언하지 않은 변수에 값을 암묵적 전역. bar는 전역 변수가 아니라 전역 객체의 프로퍼티다.
+  bar = 2; // window.bar = 2
+  console.log(window.bar); // 2
+
+  let test = 123;
+  console.log(window.test); // undefined
+  ```
+
+  하지만 let이나 const 키워드로 선언한 전역 변수는 전역 객체의 프로퍼티가 아니다. 즉, window.foo와 같이 접근할 수 없다. let이나 const 키워드로 선언한 전역 변수는 보이지 않는 개념적인 블록(전역 렉시컬 환경의 선언적 환경 레코드) 내에 존재하게 된다.
+
 **[⬆ back to top](#table-of-contents)**
 
 # };
