@@ -30,7 +30,7 @@ Other Style Guides
 1. [Constructor Function](#constructor-function)
 1. [Prototype](#prototype)
 1. [Strict mode](#strict-mode)
-<!-- 1. [Clean Coding](#references) -->
+1. [This](#this)
 
 ## Clean Coding
 
@@ -1227,6 +1227,8 @@ Other Style Guides
   ```
 
   하지만 let이나 const 키워드로 선언한 전역 변수는 전역 객체의 프로퍼티가 아니다. 즉, window.foo와 같이 접근할 수 없다. let이나 const 키워드로 선언한 전역 변수는 보이지 않는 개념적인 블록(전역 렉시컬 환경의 선언적 환경 레코드) 내에 존재하게 된다.
+
+## This
 
 **[⬆ back to top](#table-of-contents)**
 
