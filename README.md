@@ -1454,11 +1454,86 @@ foo.bind(bar)(); // bar
 
 - **생성자 함수 호출** - 생성자 함수 내부의 this에는 생성자 함수가 (미래에) 생성할 인스턴스가 바인딩된다.
 
-- **call, apply, bind**
-  **[call, apply]**
+- **call, apply, bind**  
+  **[call, apply]** - apply와 call 메서드의 본질적인 기능은 함수를 호출하는 것이다. apply와 call 메서드는 함수를 호출하면서 첫 번째 인수로 전달한 특정 객체를 호출한 함수의 this에 바인딩한다.
 
-  ```javasciprt
+  ```javascript
+  function getThisBinding() {
+    console.log(arguments);
+    return this;
+  }
 
+  // this로 사용할 객체
+  const thisArg = { a: 1 };
+
+  console.log(getThisBinding()); // window
+
+  // getThisBinding 함수를 호출하면서 인수로 전달한 객체를 getThisBinding 함수의 this에 바인딩한다.
+  // apply 메서드는 호출할 함수의 인수를 배열로 묶어 전달한다.
+  console.log(getThisBinding.apply(thisArg, [1, 2, 3]));
+  // Arguments(3) [1, 2, 3, callee: f, Symbol(Symbol.iterator): f]
+  // {a: 1}
+
+  console.log(getThisBinding.call(thisArg, 1, 2, 3));
+  // Arguments(3) [1, 2, 3, callee: f, Symbol(Symbol.iterator): f]
+  // {a: 1}
+  ```
+
+  apply 메서드는 호출할 함수의 인수를 배열로 묶어 전달한다. call 메서드는 호출할 함수의 인수를 쉼표로 구분한 리스트 형식으로 전달한다.  
+  apply와 call 메서드는 호출할 함수에 인수를 전달하는 방식만 다를 뿐 this로 사용할 객체를 전달하면서 함수를 호출하는 것은 동일하다.  
+  apply와 call 메서드는 대표적인 용도는 arguments 객체와 같은 유사 배열 객체에 배열 메서드를 사용하는 경우다. arguments 객체는 배열이 아니기 때문에 Array.prototype.slice 같은 배열의 메서드를 사용할 수 없으나 apply와 call 메서드를 이용하면 가능하다.
+
+  ```javascript
+  function convertArgsToArray() {
+    console.log(arguments);
+
+    // arguments 객체를 배열로 반환
+    // Array.prototype.slice를 인수 없이 호출하면 배열의 복사본을 생셩한다.
+    const arr = Array.prototype.slice.call(arguments);
+    //const arr = Array.prototype.slice.apply(arguments);
+    console.log(arr);
+
+    return arr;
+  }
+
+  convertArgsToArray(1, 2, 3); // [1, 2, 3]
+  ```
+
+- **bind** - 메서드의 this와 메서드 내부의 중첩 함수 또는 콜백 함수의 this가 불일치하는 문제를 해결하기 위해 유용하게 사용된다.
+
+  ```javascript
+  const person = {
+    name: 'Lee',
+    foo(callback) {
+      // ①
+      setTimeout(callback, 100);
+    }
+  };
+
+  person.foo(function () {
+    console.log(`Hi! my name is ${this.name}.`); // ② Hi! my name is .
+    // 일반 함수로 호출된 콜백 함수 내부의 this.name은 브라우저 환경에서 window.name과 같다.
+    // 브라우저 환경에서 window.name은 브라우저 창의 이름을 나타내는 빌트인 프로퍼티이며 기본값은 '' 이다.
+  });
+
+  // ① 현재 시점에서 this는 foo 메서드를 호출한 객체, person 객체를 가리킨다. 그러나 person.foo의 콜백 함수가 일반 함수로서 호출된 ②의 시점에서 this는 전역 객체 window를 가리킨다.
+  // 따라서 person.foo의 콜백 함수 내부에서 this.name은 window.name과 같다.
+  ```
+
+  위 예제에서 person.foo의 콜백 함수는 외부 함수 person.foo를 돕는 헬퍼 함수(보조 함수) 역할을 하기 때문에 **외부 함수 person.foo 내부의 this와 콜백 함수 내부의 this가 상이하면 문맥상 문제가 발생한다.** 따라서 콜백 함수 내부의 this를 외부 함수 내부의 this와 일치시켜야 한다. 이때 bind 메서드를 사용하여 this를 일치시킬 수 있다.
+
+  ```javascript
+  const person = {
+    name: 'Lee',
+    foo(callback) {
+      // bind 메서드로 callback 함수 내부의 this 바인딩을 전달
+      setTimeout(callback.bind(this), 100);
+    }
+  };
+
+  person.foo(function () {
+    console.log(`Hi! my name is ${this.name}.`); // Hi! my name is Lee.
+  });
   ```
 
 **[⬆ back to top](#table-of-contents)**
