@@ -1,1 +1,1 @@
-// next closure..
+// 실행컨텍스트 / closure
