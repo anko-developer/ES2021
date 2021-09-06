@@ -1,7 +1,7 @@
 (function () {
-  const person = (function () {
+  const Wow = (function () {
     const Person = function (name) {
-      this.name = name;
+      this.name = name; // this는 생성될 instance를 가리킨다
     };
 
     Person.prototype = {
@@ -18,6 +18,6 @@
     name: 'anko'
   };
 
-  const test = new person('kim');
+  const test = new Wow('kim');
   test.sayHello.call(um);
 })();
