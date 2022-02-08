@@ -2,5 +2,12 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
 }
+html:lang(ko) {
+  word-break: keep-all;
+}
+
+body {
+  overflow-wrap: break-word;
+}
 
 /*# sourceMappingURL=app.css.map */
