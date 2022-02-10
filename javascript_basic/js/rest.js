@@ -1,1 +1,1 @@
-// 재택2
+// webpack setting
