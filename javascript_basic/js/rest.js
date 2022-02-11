@@ -1,1 +1,1 @@
-// webpack setting
+// webpack setting2
