@@ -3,11 +3,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const LIST1 = document.querySelectorAll('.study__item');
 
   // getElementsByClassName로 사용
-  // Array.prototype.forEach.call(LIST, (el, i) => {
-  //   el.addEventListener('click', () => {
-  //     console.log('test0', i);
-  //   });
-  // });
+  Array.prototype.forEach.call(LIST, (el, i) => {
+    el.addEventListener('click', () => {
+      console.log('test0', i);
+    });
+  });
 
   // [...LIST].forEach((el, i) => {
   //   el.addEventListener('click', () => {
@@ -24,10 +24,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
   //   });
   // });
 
-  // [...LIST1].forEach((el, i) => {
-  //   el.addEventListener('click', () => {
-  //     console.log('test0', i);
-  //   });
-  //   console.log(el, i);
-  // });
+  [...LIST1].forEach((el, i) => {
+    el.addEventListener('click', () => {
+      console.log('test0', i);
+    });
+    console.log(el, i);
+  });
 });
