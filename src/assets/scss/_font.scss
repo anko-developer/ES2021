@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 400;
+  src: local('Noto Sans KR Regular'), 
+  url(../fonts/NotoSans-Regular.woff2) format("woff2"),
+  url(../fonts/NotoSans-Regular.woff) format("woff"),
+  url(../fonts/NotoSans-Regular.otf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 500;
+  src: local('Noto Sans KR Medium'), 
+  url(../fonts//NotoSans-Medium.woff2) format("woff2"),
+  url(../fonts//NotoSans-Medium.woff) format("woff"),
+  url(../fonts//NotoSans-Medium.otf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 700;
+  src: local('Noto Sans KR Bold'), 
+  url(../fonts/NotoSans-Bold.woff2) format("woff2"),
+  url(../fonts/NotoSans-Bold.woff) format("woff"),
+  url(../fonts/NotoSans-Bold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: Roboto;
+  font-weight: 300;
+  unicode-range: U+0020-007E;
+  src: local('Roboto Thin'), url(../fonts/Roboto-Thin.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Roboto;
+  font-weight: 400;
+  unicode-range: U+0020-007E;
+  src: local('Roboto Regular'), url(../fonts/Roboto-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Roboto;
+  font-weight: 500;
+  unicode-range: U+0020-007E;
+  src: local('Roboto Medium'), url(../fonts/Roboto-Medium.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: Roboto;
+  font-weight: 700;
+  unicode-range: U+0020-007E;
+  src: local('Roboto Bold'), url(../fonts/Roboto-Bold.ttf) format('truetype');
+}

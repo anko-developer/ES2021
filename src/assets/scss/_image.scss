@@ -1,0 +1,8 @@
+.imageText {
+  @include clearfix;
+
+  width: 200px;
+  height: 200px;
+  background: url(#{$assetPath}/test.png);
+  color: $color;
+}
