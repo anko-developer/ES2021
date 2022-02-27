@@ -1550,6 +1550,21 @@ foo.bind(bar)(); // bar
   <br>
   **함수를 어디서 호출했는지가 아니라 어디에 정의했는지에 따라 상위 스코프를 결정한다. 그리고 함수 객체는 자신이 정의된 스코프, 즉 상위 스코프를 기억한다.**
 
+
+## 기억해야만 하는 리스트
+```javascript
+  // 모든 변수 이름은 'camelCase'로 쓰는 것이 좋습니다.
+  let bad_variable_name; // 비추천 방식
+  let goodVariableName; // 추천 방식
+```
+
+flex 속성은 flex item의 단축 속성이다.
+flex-grow(팽창), flex-shrink(수축), flex-basis(기본 사이즈) 순서이며,
+초기 값은 0 1 auto 이다.
+여기서 flex-grow 혹은 flex-basis 둘 중 하나는 꼭 입력해줘야하며,
+flex: 1; 을 입력했다면 flex: 1 1 0; 을 의미한다.
+실무에서 많이 쓰는 flex: 1; 을 알아보았다.
+
 **[⬆ back to top](#table-of-contents)**
 
 # };
