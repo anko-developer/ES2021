@@ -1565,6 +1565,10 @@ flex-grow(팽창), flex-shrink(수축), flex-basis(기본 사이즈) 순서이�
 flex: 1; 을 입력했다면 flex: 1 1 0; 을 의미한다.
 실무에서 많이 쓰는 flex: 1; 을 알아보았다.
 
+flex-flow 속성은 flex-direction || flex-wrap 의 단축 속성이다.
+초기 값은 flex-flow: row nowrap 이다.
+두 속성 중 하나는 꼭 입력해야하며 많이 사용한다.
+
 **[⬆ back to top](#table-of-contents)**
 
 # };
