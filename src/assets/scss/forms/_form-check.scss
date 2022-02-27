@@ -1,0 +1,27 @@
+.form-check {
+  position: relative;
+
+  label {
+    cursor: pointer;
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+
+    &:checked + label {
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 8px;
+        margin-left: 5px;
+        border: 2px solid red;
+        border-top: 0;
+        border-right: 0;
+        transform: rotate(-45deg);
+        transform-origin: 25% 25%; // transform 시키는 기준점을 말함, x축 y축으로 25%
+      }
+    }
+  }
+}
