@@ -1,0 +1,101 @@
+.xOpt {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+  align-items: center;
+  font-size: 16px;
+  cursor: default;
+  --control-border-color: darkslategray;
+  --control-bg-color: white;
+  --control-checked-color: blue;
+  --text-default-color: darkslategray;
+  --text-checked-color: black;
+  --text-disabled-color: silver;
+  --outline-color: royalblue;
+}
+[hidden].xOpt { display: none; }
+.xOpt__btn {
+  position: absolute;
+  opacity: 0;
+}
+.xOpt__label {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  line-height: 20px;
+  width: 100%;
+  padding: 16px 16px 12px 44px;
+  color: var(--text-default-color);
+  vertical-align: top;
+  text-align: left;
+}
+.xOpt__label::before,
+.xOpt__label::after {
+  position: absolute;
+  box-sizing: border-box;
+  top: 24px;
+  left: 16px;
+  transform: translateY(-50%);  
+}
+.xOpt__label::before {
+  content: '';
+  border: 2px solid var(--control-border-color);
+  background: var(--control-bg-color);
+  opacity: .6;
+}
+:checked + .xOpt__label::after { content: ''; }
+:focus + .xOpt__label,
+:checked + .xOpt__label { color: var(--text-checked-color); }
+:focus + .xOpt__label::before,
+:checked + .xOpt__label::before { opacity: 1; }
+:focus + .xOpt__label { outline: 4px auto var(--outline-color); }
+@media (hover) {
+  :hover > .xOpt__label { color: var(--text-checked-color); }
+  :hover > .xOpt__label::before { opacity: 1; }
+}
+:disabled .xOpt__label,
+:disabled + .xOpt__label {
+  color: var(--text-disabled-color);
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+:disabled .xOpt__label::before,
+:disabled .xOpt__label::after,
+:disabled + .xOpt__label::before,
+:disabled + .xOpt__label::after { opacity: .33; }
+
+/* .xRadio */
+.xRadio__label::before {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.xRadio__label::after {
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  background: var(--control-checked-color);
+  border-radius: 50%;
+}
+:checked + .xRadio__label::before { border-color: var(--control-checked-color); }
+
+/* .xCheck */
+.xCheck__label::before {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+}
+.xCheck__label::after {
+  width: 12px;
+  height: 6px;
+  margin: -5px 0 0 3px;
+  border: 2px solid var(--control-bg-color);
+  border-top: 0;
+  border-right: 0;
+  transform: rotate(-45deg);
+}
+:checked + .xCheck__label::before {
+  border: 0;
+  background: var(--control-checked-color);
+}
+
