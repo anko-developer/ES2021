@@ -1,8 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
@@ -26,56 +27,46 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          sources: {
+            list: [
+              {
+                tag: 'img',
+                attribute: 'src',
+                type: 'src'
+              }
+            ]
+          }
+        }
+      },
+      {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        type: 'asset/resource',
         generator: {
-          filename: "assets/images/[name][ext]",
+          filename: 'assets/images/[name][ext]'
           // publicPath: "/assets/images/"
         }
-        // type: "asset",
-        // use: [
-        //   {
-        //     loader: 'url-loader',
-        //     options: {
-        //       limit: 10000,
-        //       // outputPath: 'assets/images',
-        //       // publicPath: '/public/assets/images/',
-        //       name: 'assets/images/[name].[ext]', // 이름, 해시, 확장자
-        //       esModule: false
-        //     }
-        //   }
-        // ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
         generator: {
-          filename: "assets/fonts/[name][ext]",
-          // publicPath: "/assets/images/"
+          filename: 'assets/fonts/[name][ext]'
         }
-        // use: [
-        //   {
-        //     loader: 'file-loader',
-        //     options: {
-        //       outputPath: 'assets/fonts',
-        //       // name: '[name].[hash:8].[ext]', // 이름, 해시, 확장자
-        //       name: '[name].[ext]', // 이름, 확장자
-        //     },
-        //   },
-        // ],
-      },
+      }
     ]
   },
   devtool: 'source-map',
   optimization: {
-    minimizer: [
-      new CssMinimizerPlugin(),
-    ],
+    minimizer: [new CssMinimizerPlugin()],
     // 개발 중에도 실행하려면 해당 minimize 값을 넣어준다.
-    minimize: true,
+    minimize: true
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new webpack.BannerPlugin({
-      banner: `Study build time : ${new Date().toLocaleTimeString()}`,
+      banner: `Study build time : ${new Date().toLocaleTimeString()}`
     }),
     // 컴파일 + 번들링 CSS 파일이 저장될 경로와 이름 지정
     new MiniCssExtractPlugin({ filename: 'assets/css/style.css' }),
@@ -87,18 +78,24 @@ module.exports = {
             mozjpeg: {
               // That setting might be close to lossless, but it’s not guaranteed
               // https://github.com/GoogleChromeLabs/squoosh/issues/85
-              quality: 100,
+              quality: 100
             },
             webp: {
-              lossless: 1,
+              lossless: 1
             },
             avif: {
               // https://github.com/GoogleChromeLabs/squoosh/blob/dev/codecs/avif/enc/README.md
-              cqLevel: 0,
-            },
-          },
-        },
-      },
+              cqLevel: 0
+            }
+          }
+        }
+      }
     }),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'test',
+      // template: './src/index.html'
+      template: path.join(path.resolve(__dirname, 'src'), 'index.html')
+    })
   ]
 };
