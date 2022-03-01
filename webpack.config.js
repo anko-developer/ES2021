@@ -27,27 +27,40 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              limit: 8192,
-              publicPath: '/public/assets/images/',
-              name: 'assets/images/[name].[hash:8].[ext]', // 이름, 해시, 확장자
-            }
-          }
-        ]
+        generator: {
+          filename: "assets/images/[name][ext]",
+          // publicPath: "/assets/images/"
+        }
+        // type: "asset",
+        // use: [
+        //   {
+        //     loader: 'url-loader',
+        //     options: {
+        //       limit: 10000,
+        //       // outputPath: 'assets/images',
+        //       // publicPath: '/public/assets/images/',
+        //       name: 'assets/images/[name].[ext]', // 이름, 해시, 확장자
+        //       esModule: false
+        //     }
+        //   }
+        // ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'assets/fonts/[name].[hash:8].[ext]', // 이름, 해시, 확장자
-            },
-          },
-        ],
+        generator: {
+          filename: "assets/fonts/[name][ext]",
+          // publicPath: "/assets/images/"
+        }
+        // use: [
+        //   {
+        //     loader: 'file-loader',
+        //     options: {
+        //       outputPath: 'assets/fonts',
+        //       // name: '[name].[hash:8].[ext]', // 이름, 해시, 확장자
+        //       name: '[name].[ext]', // 이름, 확장자
+        //     },
+        //   },
+        // ],
       },
     ]
   },
