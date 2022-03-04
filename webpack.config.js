@@ -21,8 +21,8 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         // mini-css-extract-plugin로 대체하여 sass를 내부 style로 번들시키지 않고 css 파일로 별도 분리시켜준다.
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-        exclude: /node_modules/
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        // exclude: /node_modules/
       },
       {
         test: /\.js$/,
@@ -49,7 +49,6 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: 'assets/images/[name][ext]'
-          // publicPath: "/assets/images/"
         }
       },
       {
