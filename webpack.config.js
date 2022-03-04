@@ -13,6 +13,9 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'index.bundle.js'
   },
+  devServer: {
+    port: 9000
+  },
   module: {
     rules: [
       {
@@ -58,13 +61,13 @@ module.exports = {
       }
     ]
   },
-  devtool: 'source-map',
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
     // 개발 중에도 실행하려면 해당 minimize 값을 넣어준다.
     minimize: true
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.BannerPlugin({
       banner: `Study build time : ${new Date().toLocaleTimeString()}`
     }),
@@ -91,11 +94,15 @@ module.exports = {
         }
       }
     }),
-    new CleanWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
     new HtmlWebpackPlugin({
       title: 'test',
-      // template: './src/index.html'
+      // index.html 템플릿을 기반으로 빌드 결과물을 추가해준다.
       template: path.join(path.resolve(__dirname, 'src'), 'index.html')
     })
-  ]
+  ],
+  devtool: 'source-map'
 };
