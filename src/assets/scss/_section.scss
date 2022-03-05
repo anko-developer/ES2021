@@ -1,7 +1,8 @@
 .section {
   margin-top: 20px;
-  
+
   // &:not(:first-child) {
   //   margin-top: 20px;
   // }
+  background: url(#{$assetPath}/test1.png);
 }
