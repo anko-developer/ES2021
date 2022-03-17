@@ -12,10 +12,12 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'public'),
+    publicPath: 'src/',
     filename: 'index.bundle.js'
   },
   devServer: {
-    port: 9000
+    port: 9000,
+    contentBase: path.join(__dirname, '/src/')
   },
   module: {
     rules: [
@@ -30,21 +32,21 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/
       },
-      // {
-      //   test: /\.html$/i,
-      //   loader: 'html-loader',
-      //   options: {
-      //     sources: {
-      //       list: [
-      //         {
-      //           tag: 'img',
-      //           attribute: 'src',
-      //           type: 'src'
-      //         }
-      //       ]
-      //     }
-      //   }
-      // },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          sources: {
+            list: [
+              {
+                tag: 'img',
+                attribute: 'src',
+                type: 'src'
+              }
+            ]
+          }
+        }
+      },
       {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,
         type: 'asset',
@@ -81,7 +83,7 @@ module.exports = {
             mozjpeg: {
               // That setting might be close to lossless, but it’s not guaranteed
               // https://github.com/GoogleChromeLabs/squoosh/issues/85
-              quality: 100
+              quality: 75
             },
             webp: {
               lossless: 1
@@ -97,12 +99,12 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'test',
+      // index.html 템플릿을 기반으로 빌드 결과물을 추가해준다.
+      template: path.join(path.resolve(__dirname, 'src'), 'index.html')
     })
-    // new HtmlWebpackPlugin({
-    //   title: 'test',
-    //   // index.html 템플릿을 기반으로 빌드 결과물을 추가해준다.
-    //   template: path.join(path.resolve(__dirname, 'src'), 'index.html')
-    // })
   ],
   devtool: 'source-map'
 };
