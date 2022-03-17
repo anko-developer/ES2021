@@ -104,6 +104,11 @@ module.exports = {
       title: 'test',
       // index.html 템플릿을 기반으로 빌드 결과물을 추가해준다.
       template: path.join(path.resolve(__dirname, 'src'), 'index.html')
+    }),
+    new HtmlWebpackPlugin({
+      title: 'test1',
+      filename : 'pages/login.html',
+      template: './src/pages/login.html'
     })
   ],
   devtool: 'source-map'
