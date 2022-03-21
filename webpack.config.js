@@ -12,12 +12,13 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'public'),
-    publicPath: 'src/',
+    // publicPath: 'http://localhost:9000/',
     filename: 'index.bundle.js'
   },
   devServer: {
     port: 9000,
-    contentBase: path.join(__dirname, '/src/')
+    // devMiddleware: {publicPath: "http://localhost:9000/"}
+    // contentBase: path.join(__dirname, '/src/')
   },
   module: {
     rules: [
@@ -108,7 +109,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'test1',
       filename : 'pages/login.html',
-      template: './src/pages/login.html'
+      // template: './src/pages/login.html'
+      template: path.join(path.resolve(__dirname, 'src/pages'), 'login.html')
     })
   ],
   devtool: 'source-map'
