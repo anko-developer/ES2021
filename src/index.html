@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="/public/assets/css/style.css">
-  <script src=""></script>
 </head>
 <body id="Body">
+  <div class="imgTest" style="position:relative;width:800px;height:800px;background-color: green">
+    <div class="mask-bg"></div>
+    <div class="svg-bg"></div>
+  </div>
   <header>
     <button class="drawer-menu" type="button" aria-label="네비게이션 버튼"></button>
   </header>
@@ -24,7 +27,83 @@
     </div>
   </section>
 
-  <div class="imageText"></div>
+  <div class="imageText">
+    <img src="/src/assets/images/test1.png" alt="">
+  </div>
+
+  <section>
+    <fieldset>
+      <legend>.xRadio</legend>
+      <label class="xOpt xRadio">
+        <input class="xOpt__btn" name="xRadio-1" type="radio">
+        <span class="xOpt__label xRadio__label">라디오</span>
+      </label>
+      <label class="xOpt xRadio">
+        <input class="xOpt__btn" name="xRadio-1" type="radio" checked>
+        <span class="xOpt__label xRadio__label">라디오</span>
+      </label>
+      <label class="xOpt xRadio">
+        <input class="xOpt__btn" name="xRadio-1" type="radio" disabled>
+        <span class="xOpt__label xRadio__label">라디오:disabled</span>
+      </label>
+    </fieldset>
+    <fieldset disabled>
+      <legend>:disabled .xRadio</legend>
+      <label class="xOpt xRadio">
+        <input class="xOpt__btn" name="xRadio-2" type="radio">
+        <span class="xOpt__label xRadio__label">라디오</label>
+      </label>
+      <label class="xOpt xRadio">
+        <input class="xOpt__btn" name="xRadio-2" type="radio" checked>
+        <span class="xOpt__label xRadio__label">라디오</label>
+      </label>
+      <label class="xOpt xRadio">
+        <input class="xOpt__btn" name="xRadio-2" type="radio" disabled>
+        <span class="xOpt__label xRadio__label">라디오</label>
+      </label>
+    </fieldset>
+    <label class="xOpt xRadio">
+      <input class="xOpt__btn" name="xRadio-3" type="radio">
+      <span class="xOpt__label xRadio__label">라디오 문자 줄바꿈 테스트 라디오 문자 줄바꿈 테스트 라디오 문자 줄바꿈 테스트 라디오 문자 줄바꿈 테스트 라디오 문자 줄바꿈 테스트 라디오 문자 줄바꿈 테스트 라디오 문자 줄바꿈 테스트 라디오 문자 줄바꿈 테스트 라디오 문자 줄바꿈 테스트 라디오 문자 줄바꿈 테스트 <a href="#">링크 추가 테스트</a></span>
+    </label>
+  </section>
+
+  <section>
+    <fieldset>
+      <legend>.xCheck</legend>
+      <label class="xOpt xCheck">
+        <input class="xOpt__btn" type="checkbox">
+        <span class="xOpt__label xCheck__label">체크박스</span>
+      </label>
+      <label class="xOpt xCheck">
+        <input class="xOpt__btn" type="checkbox" checked>
+        <span class="xOpt__label xCheck__label">체크박스</span>
+      </label>
+      <label class="xOpt xCheck">
+        <input class="xOpt__btn" type="checkbox" disabled>
+        <span class="xOpt__label xCheck__label">체크박스:disabled</span>
+      </label>
+    </fieldset>
+    <fieldset disabled>
+      <legend>:disabled .xCheck</legend>
+      <label class="xOpt xCheck">
+        <input class="xOpt__btn" type="checkbox">
+        <span class="xOpt__label xCheck__label">체크박스</span>
+      </label>
+      <label class="xOpt xCheck">
+        <input class="xOpt__btn" type="checkbox" checked>
+        <span class="xOpt__label xCheck__label">체크박스</span>
+      </label>
+      <label class="xOpt xCheck">
+        <input class="xOpt__btn" type="checkbox" disabled>
+        <span class="xOpt__label xCheck__label">체크박스</span>
+      </label>
+    </fieldset>
+    <label class="xOpt xCheck">
+      <input class="xOpt__btn" type="checkbox">
+      <span class="xOpt__label xCheck__label">체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 <a href="#">링크 추가 테스트</a></span>
+    </label>
+  </section>
   <script src="/public/index.bundle.js"></script>
 </body>
 </html>

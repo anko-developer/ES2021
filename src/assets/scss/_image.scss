@@ -3,7 +3,33 @@
 
   width: 200px;
   height: 200px;
-  background: url(#{$assetPath}/test.png);
+  background: url(#{$assetPath}/test00.jpeg);
   background-size: cover;
-  color: $color;
+  // color: $color;
+}
+
+.imgText {
+  position: relative;
+}
+
+.mask-bg {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' fill='#fff' y='0px' width='100' height='100' viewBox='0 0 100 100' style='fill-opacity:.2;enable-background:new 0 0 100 100;' xml:space='preserve'%3E%3Ccircle cx='50' cy='50' r='42.41'/%3E%3C/svg%3E");
+}
+
+.svg-bg {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.2);
+  background: url(#{$assetPath}/test00.jpeg);
+  background-size: cover;
 }
