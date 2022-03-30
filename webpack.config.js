@@ -5,28 +5,23 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development', // webpack4에서 추가되었습니다. mode가 development면 개발용, production이면 배포용입니다. 배포용 일 경우에는 알아서 최적화가 적용됩니다. 따라서 기존 최적화플러그인들이 대량으로 호환되지 않습니다.
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'public'),
-    // publicPath: 'http://localhost:9000/',
-    filename: 'index.bundle.js'
+    filename: 'index.bundle.js',
+    clean: true
   },
   devServer: {
-    port: 9000,
-    // devMiddleware: {publicPath: "http://localhost:9000/"}
-    // contentBase: path.join(__dirname, '/src/')
+    port: 9000
   },
   module: {
     rules: [
       {
         test: /\.s[ac]ss$/i,
-        // mini-css-extract-plugin로 대체하여 sass를 내부 style로 번들시키지 않고 css 파일로 별도 분리시켜준다.
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-        // exclude: /node_modules/
       },
       {
         test: /\.js$/,
@@ -49,7 +44,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        test: /\.(png|jpe?g|gif|webp)$/i,
         type: 'asset',
         generator: {
           filename: 'assets/images/[name][ext]'
@@ -61,16 +56,22 @@ module.exports = {
         generator: {
           filename: 'assets/fonts/[name][ext]'
         }
+      },
+      {
+        test: /\.svg$/,
+        loader: "svg-sprite-loader"
       }
     ]
   },
   optimization: {
-    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    minimizer: [
+      new CssMinimizerPlugin(), 
+      new TerserPlugin()
+    ],
     // 개발 중에도 실행하려면 해당 minimize 값을 넣어준다.
     minimize: true
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new webpack.BannerPlugin({
       banner: `Study build time : ${new Date().toLocaleTimeString()}`
     }),
@@ -102,15 +103,9 @@ module.exports = {
       jQuery: 'jquery'
     }),
     new HtmlWebpackPlugin({
-      title: 'test',
+      title: 'main',
       // index.html 템플릿을 기반으로 빌드 결과물을 추가해준다.
       template: path.join(path.resolve(__dirname, 'src'), 'index.html')
-    }),
-    new HtmlWebpackPlugin({
-      title: 'test1',
-      filename : 'pages/login.html',
-      // template: './src/pages/login.html'
-      template: path.join(path.resolve(__dirname, 'src/pages'), 'login.html')
     })
   ],
   devtool: 'source-map'
