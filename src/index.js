@@ -1,19 +1,10 @@
 require('./assets/scss/index.scss'); //sass 연결
+
 function requireAll(r) {
   r.keys().forEach(r);
 }
 
 requireAll(require.context('./assets/images/svg', true, /\.svg$/));
-
-// const $ = require('jquery');
-const DOM = {
-  body: '#Body'
-};
-
-$(DOM.body).append('<p>Webpack</p>');
-$(DOM.body).css('background-color', '#ffd200');
-
-
 
 // let context = focusMask.getContext('2d');
 // let imgElem  = document.createElement('img');

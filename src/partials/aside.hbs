@@ -1,0 +1,31 @@
+<aside class="menu is-general is-active is-user">
+  {{!-- <aside class="menu is-general is-active is-user"> --}}
+  <button class="button is-inbound is-ghost">
+    <svg class="icon is-inbound">
+      <use href="#icon-inbound"></use>
+    </svg>
+  </button>
+  <div class="container is-menu-top">
+    <ul class="menu-list">
+      <li class="{{#if (isActive path.components)}}is-active{{/if}}">
+        <a href="#none" aria-current="page" rel="noopener">Components</a>
+        <ul class="sub-menu">
+          <li class="{{button}}">
+            <a href="{{path.components}}/button.html" rel="noopener">Button</a>
+          </li>
+          <li class="{{input}}">
+            <a href="{{path.components}}/input.html" rel="noopener">Input</a>
+          </li>
+        </ul>
+      </li>
+      <li class="{{#if (isActive path.templates)}}is-active{{/if}}">
+        <a href="#none" aria-current="page" rel="noopener">Templates</a>
+        <ul class="sub-menu">
+          <li class="{{grid}}">
+            <a href="{{path.templates}}/grid.html" rel="noopener">grid</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</aside>

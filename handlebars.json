@@ -1,0 +1,10 @@
+{
+  "components": {
+    "components": ".",
+    "templates": "../templates"
+  },
+  "templates": {
+    "components": "../components",
+    "templates": "."
+  }
+}

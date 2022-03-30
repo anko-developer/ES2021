@@ -5,13 +5,19 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HandlebarsPlugin = require("handlebars-webpack-plugin");
 
 module.exports = {
   mode: 'development', // webpack4에서 추가되었습니다. mode가 development면 개발용, production이면 배포용입니다. 배포용 일 경우에는 알아서 최적화가 적용됩니다. 따라서 기존 최적화플러그인들이 대량으로 호환되지 않습니다.
-  entry: './src/index.js',
+  entry: {
+    app: "./src/index.js",
+    vendor: [
+      "jquery"
+    ]
+  },
   output: {
-    path: path.resolve(__dirname, 'public'),
-    filename: 'index.bundle.js',
+    path: path.resolve(__dirname, "public"),
+    filename: "[name].js",
     clean: true
   },
   devServer: {
@@ -27,21 +33,6 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      },
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-        options: {
-          sources: {
-            list: [
-              {
-                tag: 'img',
-                attribute: 'src',
-                type: 'src'
-              }
-            ]
-          }
-        }
       },
       {
         test: /\.(png|jpe?g|gif|webp)$/i,
@@ -104,9 +95,19 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'main',
-      // index.html 템플릿을 기반으로 빌드 결과물을 추가해준다.
       template: path.join(path.resolve(__dirname, 'src'), 'index.html')
-    })
+    }),
+    new HandlebarsPlugin({
+      entry: path.join(process.cwd(), "src", "handlebars", "**", "*.hbs"),
+      output: path.join(process.cwd(), "public", "pages", "[path]", "[name].html"),
+      data: path.join(__dirname, "handlebars.json"),
+      partials: [path.join(process.cwd(), "src", "partials", "**", "*.hbs")],
+      helpers: {
+        isActive: function (value) {
+          return value == ".";
+        }
+      }
+    }),
   ],
   devtool: 'source-map'
 };
