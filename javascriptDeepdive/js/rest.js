@@ -1,4 +1,4 @@
-// to rest
+//to rest
 
 function faveMaskMotion(el, option) {
   let canvas;
