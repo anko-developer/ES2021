@@ -1,0 +1,60 @@
+// loading
+.before-load {
+  overflow: hidden;
+}
+
+.loading {
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  transition: 0.5s;
+  background-color: #fff;
+
+  .before-load & {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes loading-spin {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes loading-spin {
+  100% { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes loading-circle-ani {
+  0% { stroke-dashoffset: 157; }
+  75% { stroke-dashoffset: -147; }
+  100% { stroke-dashoffset: -157; }
+}
+
+@keyframes loading-circle-ani {
+  0% { stroke-dashoffset: 157; }
+  75% { stroke-dashoffset: -147; }
+  100% { stroke-dashoffset: -157; }
+}
+
+.loading-circle {
+  width: 54px;
+  height: 54px;
+  -webkit-animation: loading-spin 3s infinite;
+          animation: loading-spin 3s infinite;
+
+  circle {
+    stroke: #000;
+    stroke-width: 4;
+    stroke-dasharray: 157; // document.querySelector('.loading-circle circle').getTotalLength()  로 dasharray 최대값을 알아낼 수 있다.
+    stroke-dashoffset: 0;
+    fill: transparent; // 색이 아예 안들어가면 none으로해도 무방
+    -webkit-animation: loading-circle-ani 1s infinite;
+            animation: loading-circle-ani 1s infinite;
+  }
+}

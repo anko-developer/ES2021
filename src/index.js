@@ -12,3 +12,14 @@ requireAll(require.context('./assets/images/svg', true, /\.svg$/));
 // // imgElem.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100" height="100" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><circle cx="50" cy="50" r="42.41"/></svg>');
 
 // context.drawImage(imgElem, 0, 0);
+
+
+// loading
+window.addEventListener('load', () => {
+  console.log('test');
+  document.body.classList.remove('before-load');
+
+  document.querySelector('.loading').addEventListener('transitionend', (e) => {  // transition 이 끝났을 때의 이벤트
+    document.body.removeChild(e.currentTarget); // currentTarget 를 이용해서 addEventListener를 호출한 객체 자체에 접근
+  });
+});
