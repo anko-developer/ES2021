@@ -6,10 +6,22 @@
   <title>Document</title>
   <link rel="stylesheet" href="/public/assets/css/style.css">
 </head>
-<body id="Body">
-  <div class="imgTest" style="position:relative;width:800px;height:800px;background-color: green">
-    <div class="mask-bg"></div>
-    <div class="svg-bg"></div>
+<body id="Body" class="before-load">
+  <div class="loading">
+    <svg class="loading-circle" viewBox="0 0 54 54">
+      <circle cx="50%" cy="50%" r="25"></circle>
+    </svg>
+  </div>
+  <div>
+    <svg>
+      <use xlink:href="#test"></use>
+    </svg>
+  </div>
+  <div class="imgTest">
+    <canvas class="mask-motion" width="2474" height="1888">많은 사람들이 웃고 있습니다. 그리고 확대 되면서 중앙에 한 사람 만 보여집니다.</canvas>
+    <div class="svg-bg-wrap">
+      <div class="svg-bg"></div>
+    </div>
   </div>
   <header>
     <button class="drawer-menu" type="button" aria-label="네비게이션 버튼"></button>
@@ -104,6 +116,6 @@
       <span class="xOpt__label xCheck__label">체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 체크박스 문자 줄바꿈 테스트 <a href="#">링크 추가 테스트</a></span>
     </label>
   </section>
-  <script src="/public/index.bundle.js"></script>
+  <script src="/public/app.js"></script>
 </body>
 </html>
