@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HandlebarsPlugin = require('handlebars-webpack-plugin');
 
 module.exports = {
-  mode: 'development', // webpack4에서 추가되었습니다. mode가 development면 개발용, production이면 배포용입니다. 배포용 일 경우에는 알아서 최적화가 적용됩니다. 따라서 기존 최적화플러그인들이 대량으로 호환되지 않습니다.
+  mode: 'production', // webpack4에서 추가되었습니다. mode가 development면 개발용, production이면 배포용입니다. 배포용 일 경우에는 알아서 최적화가 적용됩니다. 따라서 기존 최적화플러그인들이 대량으로 호환되지 않습니다.
   entry: {
     app: './src/index.js',
     vendor: [
@@ -27,7 +27,11 @@ module.exports = {
     rules: [
       {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        use: [
+          MiniCssExtractPlugin.loader, 
+          'css-loader', 
+          'sass-loader',
+        ]
       },
       {
         test: /\.js$/,
@@ -59,8 +63,8 @@ module.exports = {
       new CssMinimizerPlugin(), 
       new TerserPlugin()
     ],
-    // 개발 중에도 실행하려면 해당 minimize 값을 넣어준다.
-    minimize: true
+    // 개발 중에도 실행하려면 해당 minimize에 true값을 넣어준다 default는 false 값이다
+    // minimize: true
   },
   plugins: [
     new webpack.BannerPlugin({
