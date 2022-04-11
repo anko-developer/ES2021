@@ -11,9 +11,7 @@ module.exports = {
   mode: 'production', // webpack4에서 추가되었습니다. mode가 development면 개발용, production이면 배포용입니다. 배포용 일 경우에는 알아서 최적화가 적용됩니다. 따라서 기존 최적화플러그인들이 대량으로 호환되지 않습니다.
   entry: {
     app: './src/index.js',
-    vendor: [
-      'jquery'
-    ]
+    vendor: ['jquery']
   },
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -23,15 +21,14 @@ module.exports = {
   devServer: {
     port: 9000
   },
+  performance: {
+    maxAssetSize: 350000
+  },
   module: {
     rules: [
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader, 
-          'css-loader', 
-          'sass-loader',
-        ]
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
       {
         test: /\.js$/,
@@ -59,10 +56,7 @@ module.exports = {
     ]
   },
   optimization: {
-    minimizer: [
-      new CssMinimizerPlugin(), 
-      new TerserPlugin()
-    ],
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()]
     // 개발 중에도 실행하려면 해당 minimize에 true값을 넣어준다 default는 false 값이다
     // minimize: true
   },
@@ -103,15 +97,21 @@ module.exports = {
     }),
     new HandlebarsPlugin({
       entry: path.join(process.cwd(), 'src', 'handlebars', '**', '*.hbs'),
-      output: path.join(process.cwd(), 'public', 'pages', '[path]', '[name].html'),
+      output: path.join(
+        process.cwd(),
+        'public',
+        'pages',
+        '[path]',
+        '[name].html'
+      ),
       data: path.join(__dirname, 'handlebars.json'),
       partials: [path.join(process.cwd(), 'src', 'partials', '**', '*.hbs')],
       helpers: {
         isActive: function (value) {
-          return value == ".";
+          return value == '.';
         }
       }
-    }),
+    })
   ],
   devtool: 'source-map'
 };
