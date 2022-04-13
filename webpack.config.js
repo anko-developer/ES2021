@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HandlebarsPlugin = require('handlebars-webpack-plugin');
 
 module.exports = {
-  mode: 'production', // webpack4에서 추가되었습니다. mode가 development면 개발용, production이면 배포용입니다. 배포용 일 경우에는 알아서 최적화가 적용됩니다. 따라서 기존 최적화플러그인들이 대량으로 호환되지 않습니다.
+  mode: 'development', // webpack4에서 추가되었습니다. mode가 development면 개발용, production이면 배포용입니다. 배포용 일 경우에는 알아서 최적화가 적용됩니다. 따라서 기존 최적화플러그인들이 대량으로 호환되지 않습니다.
   entry: {
     app: './src/index.js',
     vendor: ['jquery']
@@ -28,7 +28,17 @@ module.exports = {
     rules: [
       {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       },
       {
         test: /\.js$/,
