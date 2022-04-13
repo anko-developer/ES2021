@@ -17,4 +17,9 @@ window.addEventListener('load', () => {
   });
 });
 
-import '../javascriptDeepdive/2022/01_variable';
+// import '../javascriptDeepdive/2022/01_variable';
+
+import * as test from '../javascriptDeepdive/2022/01_variable';
+
+console.log(test.testName);
+console.log(test.foo());
