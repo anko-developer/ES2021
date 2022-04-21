@@ -1,7 +1,8 @@
 require('./assets/scss/index.scss'); //sass 연결
 
 // import '../javascriptDeepdive/2022/01_variable';
-import '../javascriptDeepdive/2022/02_operator';
+// import '../javascriptDeepdive/2022/02_operator';
+import '../javascriptDeepdive/2022/00_modalTest';
 
 function requireAll(r) {
   r.keys().forEach(r);

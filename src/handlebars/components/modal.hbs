@@ -1,0 +1,29 @@
+{{#[../helpers/layout] htmlWebpackPlugin}}
+<button class="open-btn" data-target="one" type="button">열기1</button>
+<button class="open-btn" data-target="two" type="button">열기2</button>
+<article class="modal is-hidden" data-open-target="one">
+  <div class="modal__background"></div>
+  <div class="modal__content">
+    <header class="modal__head">
+      <h1>제목1</h1>
+      <button class="close-btn" type="button">닫기</button>
+    </header>
+    <section class="modal__body">
+      <p>test</p>
+    </section>
+  </div>
+</article>
+
+<article class="modal is-hidden" data-open-target="two">
+  <div class="modal__background"></div>
+  <div class="modal__content">
+    <header class="modal__head">
+      <h1>제목2</h1>
+      <button class="close-btn" type="button">닫기</button>
+    </header>
+    <section class="modal__body">
+      <p>test</p>
+    </section>
+  </div>
+</article>
+{{/[../helpers/layout]}} 
