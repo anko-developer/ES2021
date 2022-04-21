@@ -1,2 +1,4 @@
 *.scss
 *.html
+*.hbs
+webpack.config.js
