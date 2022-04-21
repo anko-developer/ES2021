@@ -1,0 +1,45 @@
+.modal {
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  &.is-hidden {
+    display: none;
+  }
+
+  &__background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &__content {
+    position: relative;
+    min-width: 640px;
+    max-height: calc(100vh - 40px);
+    margin: 0 auto;
+    background-color: #fff;
+  }
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
+  }
+
+  &__body {
+    padding: 0.63em;
+    font-size: 1.6rem;
+  }
+}

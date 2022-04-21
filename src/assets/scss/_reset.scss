@@ -1,27 +1,83 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   box-sizing: border-box;
   font-size: 62.5%;
 
-  /* Do not break Korean words */
   &:lang(ko) {
     word-break: keep-all;
   }
 }
 
 body {
-  margin: 0;
   overflow-wrap: break-word;
-  font-family: Roboto, "Noto Sans KR", sans-serif;
+  font-family: "Roboto", "Noto Sans KR", sans-serif;
+  font-weight: 400;
   font-size: 1.6rem;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* Reset img */
+main {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+button,
+fieldset,
+iframe,
+input,
+select,
+textarea {
+  border: 0;
+}
+
+button,
+dialog,
+input,
+mark,
+meter,
+progress {
+  background-color: transparent;
+}
+
+table {
+  border: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button,
+input,
+meter,
+progress,
+select,
+textarea {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 img {
   max-width: 100%;
   height: auto;
+  vertical-align: top;
 }
 
-/* CSS Reset by [class] - Samsung Internet does supports it.(2021-07) */
+iframe {
+  border: 0;
+}
+
+/* CSS Reset by [class] - Samsung Internet, Internet Explorer does supports it.(2021-07) */
+/*
 [class] {
   margin: 0;
   padding: 0;
@@ -41,3 +97,4 @@ img {
   -webkit-appearance: none;
   appearance: none;
 }
+*/
