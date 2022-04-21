@@ -5,10 +5,9 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HandlebarsPlugin = require('handlebars-webpack-plugin');
 
 module.exports = {
-  mode: 'development', // webpack4에서 추가되었습니다. mode가 development면 개발용, production이면 배포용입니다. 배포용 일 경우에는 알아서 최적화가 적용됩니다. 따라서 기존 최적화플러그인들이 대량으로 호환되지 않습니다.
+  mode: 'development',
   entry: {
     app: './src/index.js',
     vendor: ['jquery']
@@ -62,13 +61,20 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: 'svg-sprite-loader'
+      },
+      {
+        test: /\.hbs$/,
+        loader: 'handlebars-loader',
+        options: {
+          inlineRequires: '/assets/'
+        }
       }
     ]
   },
   optimization: {
-    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()]
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
     // 개발 중에도 실행하려면 해당 minimize에 true값을 넣어준다 default는 false 값이다
-    // minimize: true
+    minimize: true
   },
   plugins: [
     new webpack.BannerPlugin({
@@ -102,26 +108,15 @@ module.exports = {
       jQuery: 'jquery'
     }),
     new HtmlWebpackPlugin({
-      title: 'main',
-      template: path.join(path.resolve(__dirname, 'src'), 'index.html')
+      title: 'Table of Contents',
+      template: path.join('src', 'index.hbs'),
+      // favicon: path.join('src', 'favicon.ico')
     }),
-    new HandlebarsPlugin({
-      entry: path.join(process.cwd(), 'src', 'handlebars', '**', '*.hbs'),
-      output: path.join(
-        process.cwd(),
-        'public',
-        'pages',
-        '[path]',
-        '[name].html'
-      ),
-      data: path.join(__dirname, 'handlebars.json'),
-      partials: [path.join(process.cwd(), 'src', 'partials', '**', '*.hbs')],
-      helpers: {
-        isActive: function (value) {
-          return value == '.';
-        }
-      }
-    })
+    new HtmlWebpackPlugin({
+      title: 'Modal Component',
+      template: path.join('src', 'handlebars', 'components', 'modal.hbs'),
+      filename: path.join('pages', 'components', 'modal.html')
+    }),
   ],
   devtool: 'source-map'
 };
