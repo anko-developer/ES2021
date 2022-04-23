@@ -117,6 +117,11 @@ module.exports = {
       template: path.join('src', 'handlebars', 'components', 'modal.hbs'),
       filename: path.join('pages', 'components', 'modal.html')
     }),
+    new HtmlWebpackPlugin({
+      title: 'Sample Component',
+      template: path.join('src', 'handlebars', 'components', 'sample.hbs'),
+      filename: path.join('pages', 'components', 'sample.html')
+    }),
   ],
   devtool: 'source-map'
 };
