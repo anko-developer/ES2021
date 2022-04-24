@@ -1,3 +1,4 @@
+// modal
 const openButton = document.querySelectorAll('.open-btn');
 const closeButton = document.querySelectorAll('.close-btn');
 let target;
