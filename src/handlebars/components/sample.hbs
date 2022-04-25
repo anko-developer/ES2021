@@ -11,4 +11,18 @@
     </picture>
   </div>
 </div>
+<ul class="show"></ul>
+<script type="myTemplate" id="testTemplate">
+  <li>
+    <div>게시자 : {{values.name}}</div>
+    <div class="content">{{content}}</div>
+    <div>좋아요 개수 : <span> {{like}} </span></div>
+    <div class="comment">
+      <h4>댓글</h4>
+      {{#each comment}}
+      <div>{{@index}}번째 댓글 : {{this}}</div>
+      {{/each}}
+    </div>
+  </li>
+</script>
 {{/[../helpers/layout]}} 
