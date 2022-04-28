@@ -20,12 +20,12 @@ import Handlebars from 'handlebars/dist/cjs/handlebars';
 
 
 
-var source = $("#testTemplate").html();
-var template = Handlebars.compile(source);
-var values = {
-  name : "Satoshi Watanabe",
-  age : 33
-};
-var html = template(values);
-console.log(html);
-$(".show").html(html);
+// var source = $("#testTemplate").html();
+// var template = Handlebars.compile(source);
+// var values = {
+//   name : "Satoshi Watanabe",
+//   age : 33
+// };
+// var html = template(values);
+// console.log(html);
+// $(".show").html(html);
