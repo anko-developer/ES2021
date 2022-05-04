@@ -68,6 +68,19 @@ module.exports = {
         options: {
           inlineRequires: '/assets/'
         }
+      },
+      {
+        test: /\.mp4$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/video',
+              esModule: false,
+            }
+          }
+        ]
       }
     ]
   },
