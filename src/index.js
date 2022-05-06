@@ -5,7 +5,8 @@ require('./assets/scss/index.scss'); //sass 연결
 // import '../javascriptDeepdive/2022/02_type';
 // import '../javascriptDeepdive/2022/03_operator';
 // import '../javascriptDeepdive/2022/04_controlFlow';
-import '../javascriptDeepdive/2022/05_typeCoercion';
+// import '../javascriptDeepdive/2022/05_typeCoercion';
+import '../javascriptDeepdive/2022/06_object';
 
 function requireAll(r) {
   r.keys().forEach(r);
