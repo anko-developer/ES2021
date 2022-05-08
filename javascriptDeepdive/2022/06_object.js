@@ -18,5 +18,5 @@
     d
   };
 
-  // console.log(obj2);
+  console.log(obj2);
 })();
