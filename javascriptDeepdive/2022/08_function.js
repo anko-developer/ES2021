@@ -97,4 +97,6 @@
   
   console.log(num); // 100
   console.log(obj); // Object {name: 'Kim', gender: 'female'}
+
+  // to rest
 })();
