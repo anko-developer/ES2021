@@ -98,5 +98,47 @@
   console.log(num); // 100
   console.log(obj); // Object {name: 'Kim', gender: 'female'}
 
-  // to rest
+  // arrow function - 기본 함수와 this 바인딩 방식이 다르고, prototype 프로퍼티가 없으며 arguments 객체를 생성하지 않는다
+  const anko = (x, y) => x + y;
+  console.log(anko(2, 5)); // 7
+
+  // ES6에서 도입된 파라미터 기본값을 사용하면 함수 내에서 수행하던 인수 체크 및 초기화를 간소화할 수 있다.
+  // 파라미터 기본값은 파라미터에 인수를 전달하지 않았을 경우와 undefined를 전달한 경우에만 유효하다.
+  function wook(a = 0, b = 0, c = 0) {
+    return a + b + c;
+  }
+
+  // 재귀 함수는 자기 자신을 호출하는 행위를 말한다
+  // 재귀 함수는 반복문을 사용하는 것보다 재귀 함수를 사용하는 편이 더 직관적으로 이해하기 쉬울 때만 한정적으로 사용하는 것이 바람직하다
+  function countdown(n) {
+    if (n < 0) {
+      return;
+    }
+
+    console.log(n);
+    countdown(n - 1); // 재귀 호출
+  }
+
+  countdown(10);
+
+  // 팩토리얼은 1부터 자신까지의 모든 양의 정수의 곱이다
+  function factorial(n) {
+    // 탈출 조건: n이 1 이하일 때 재귀 호출을 멈춘다.
+    if (n <= 1) {
+      return 1;
+    }
+
+    // 재귀 호출
+    return n * factorial(n - 1);
+  }
+
+  // 함수 표현식으로도 똑같이 구현이 가능하다.
+  // const factorial = function studyFunc(n) {
+  //   if (n <= 1) {
+  //     return 1;
+  //   }
+  //   return n * factorial(n - 1);
+  // }
+
+  console.log(factorial(5)); // 5! = 5 * 4 * 3 * 2 * 1 = 120
 })();
