@@ -141,4 +141,45 @@
   // }
 
   console.log(factorial(5)); // 5! = 5 * 4 * 3 * 2 * 1 = 120
+
+  // 콜백 함수
+  function repeat(n, f) {
+    for (let index = 0; index < n; index++) {
+      f(index);
+    }
+  }
+
+  const logAll = function (i) {
+    console.log(i);
+  }
+
+  repeat(10, logAll);
+
+  const logOdds = function (i) {
+    if (i % 2) console.log(i);
+  };
+
+  repeat(5, logOdds);
+
+  // 이렇게 콜백 함수를 익명 함수 리터럴로 정의하면서 곧바로 고차 함수에 전달하는 것이 일반적이지만
+  // 콜백함수를 다른 곳에서도 호출할 필요가 있거나, 함수가 자주 호출된다면 함수 외부에서 콜백 함수를 정의한 후 함수 참조를 고차 함수에 전달하는 편이 효율적이다
+  // repeat(5, function (i) {
+  //   if (i % 2) console.log(i);
+  // });
+
+
+  // 순수 함수 (함수 외부 상태의 변경을 지양하는 순수 함수를 하용하는 것이 좋다)
+  // 어떤 외부 상태에 의존하지 않고 오직 매배견수를 통해 함수 내부로 전달된 인수에게만 의존해 반환값을 만든다.
+  // 함수 외부 상태를 변경하지 않는다, 어떤 외부 상태에도 의존하지 않으며 외부 상태를 변경하지도 않는 함수다.
+  let count = 0;
+
+  function plus(n) {
+    return ++n;
+  }
+
+  count = plus(count);
+  console.log('count', count);
+
+  count = plus(count);
+  console.log('count', count);
 })();

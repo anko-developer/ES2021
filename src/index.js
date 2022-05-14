@@ -8,7 +8,8 @@ require('./assets/scss/index.scss'); //sass 연결
 // import '../javascriptDeepdive/2022/05_typeCoercion';
 // import '../javascriptDeepdive/2022/06_object';
 // import '../javascriptDeepdive/2022/07_immutability';
-import '../javascriptDeepdive/2022/08_function';
+// import '../javascriptDeepdive/2022/08_function';
+import '../javascriptDeepdive/2022/09_scope';
 
 function requireAll(r) {
   r.keys().forEach(r);
