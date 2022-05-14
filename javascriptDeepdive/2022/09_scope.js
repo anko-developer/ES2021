@@ -13,4 +13,20 @@
   }
 
   gogo();
+
+  // 렉시컬 스코프
+  // 함수를 어디서 정의했느닞에 따라 함수의 상위 스코프를 결정한다.
+  let x = 1;
+
+  function foo() {
+    let x = 10;
+    bar();
+  }
+
+  function bar() {
+    console.log(x);
+  }
+
+  foo(); // 1
+  bar(); // 1
 })();
