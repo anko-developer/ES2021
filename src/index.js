@@ -9,7 +9,10 @@ require('./assets/scss/index.scss'); //sass 연결
 // import '../javascriptDeepdive/2022/06_object';
 // import '../javascriptDeepdive/2022/07_immutability';
 // import '../javascriptDeepdive/2022/08_function';
-import '../javascriptDeepdive/2022/09_scope';
+// import '../javascriptDeepdive/2022/09_scope';
+// import '../javascriptDeepdive/2022/10_private';
+import '../javascriptDeepdive/2022/11_let_const';
+
 
 function requireAll(r) {
   r.keys().forEach(r);
