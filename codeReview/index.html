@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>코드리뷰</title>
+  <script defer src="assets/js/test.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Raleway&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'PT Sans', sans-serif;
+      font-size: 24px;
+    }
+
+    header {
+      padding: 0 16px;
+      background-color: #fff;
+    }
+
+    h1 {
+      width: 39px;
+      height: 18px;
+      text-indent: -999em;
+      background: url('./assets/images/bi.png') no-repeat;
+      background-size: 72px 43px;
+    }
+
+    section {
+      padding: 0 16px;
+    }
+
+    .saleGoods {
+      position: relative;
+    }
+
+    .saleGoods__image {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'%3E%3Cmetadata%3E Svg Vector Icons : http://www.onlinewebfonts.com/icon %3C/metadata%3E%3Cg%3E%3Cg transform='translate(0.000000,511.000000) scale(0.100000,-0.100000)'%3E%3Cpath d='M1516.6,3389.1C624.8,2877.8,96.2,2564.5,100,2547.2c5.8-28.8,793.8-2212.3,803.4-2223.8c3.8-3.8,1059.1,340.2,1214.8,397.9c17.3,5.8,23.1-470.9,23.1-2348.8V-3984h2863.9h2863.9v2356.5c0,1877.9,5.8,2354.6,25,2348.8c153.8-57.7,1209-401.7,1212.9-397.9c3.8,3.8,188.4,509.4,411.3,1122.5c342.1,943.7,401.7,1118.7,376.7,1136c-15.4,11.5-657.4,382.5-1428.1,822.6L7065.7,4204h-517.1h-519l-11.5-109.6c-28.8-319.1-240.3-630.4-534.3-784.2c-313.3-163.4-645.8-163.4-961,1.9c-294.1,155.7-534.3,524.7-536.3,820.7v71.1h-522.8l-524.7-1.9L1516.6,3389.1z M3667.4,3700.5c76.9-219.1,265.2-476.7,457.5-620.8c255.6-194.1,563.2-297.9,880.3-297.9c317.1,0,624.7,103.8,880.3,297.9c192.2,144.2,380.6,401.7,457.4,620.8l36.5,100H6662h284.5l1230.1-703.5c676.6-386.3,1230.1-713.1,1230.1-724.6c1.9-50-547.8-1531.9-567-1531.9c-11.5,0-317.1,100-682.3,221c-365.2,121.1-668.9,221-676.6,221c-9.6,0-15.4-1093.7-15.4-2431.4v-2431.4H5005.2H2544.9V-1149c0,1337.8-5.8,2431.4-15.4,2431.4c-7.7,0-311.4-100-676.6-221c-365.2-121.1-670.8-221-682.3-221c-23.1,0-574.7,1505-563.2,1537.7c3.8,11.5,555.5,336.4,1226.3,720.8l1220.5,699.6h288.3l288.3,1.9L3667.4,3700.5z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .saleGoods__percent {
+      position: absolute;
+      top: 110px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .priceInfo {
+      margin-top: 30px;
+    }
+
+    .priceInfo__item {
+      display: flex;
+      align-items: center;
+    }
+
+    .priceInfo__item input {
+      height: 30px;
+      margin-left: 10px;
+      padding: 0 10px;
+      font-size: 20px;
+    }
+
+    .nowPrice {
+      margin-left: 10px;
+    }
+
+    .calcBtn {
+      display: block;
+      position: relative;
+      width: 122px;
+      height: 48px;
+      margin: 30px auto 0;
+      border: 2px solid #000;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #fff;
+    }
+
+    .calcBtn::after {
+      content: "";
+      position: absolute;
+      top: 48%;
+      right: 14px;
+      width: 12px;
+      height: 12px;
+      transform: translateY(-50%);
+      background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 478.448 478.448' style='enable-background:new 0 0 478.448 478.448;' xml:space='preserve'%3E%3Cg%3E%3Cg%3E%3Cpolygon points='131.659,0 100.494,32.035 313.804,239.232 100.494,446.373 131.65,478.448 377.954,239.232'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
+    }
+  </style>
+</head>
+<body id="App">
+  <header>
+    <h1>29%</h1>
+  </header>
+  <section>
+    <div class="saleGoods">
+      <div class="saleGoods__image"></div>
+      <p class="saleGoods__percent">29% OFF!</p>
+    </div>
+
+    <div class="priceInfo">
+      <div class="priceInfo__item">
+        <label for="before">BEFORE : $</label>
+        <input id="before" class="beforePrice" type="text">
+      </div>
+      <div class="priceInfo__item">
+        <p>NOW : $<span class="nowPrice">?</span></p>
+      </div>
+      <button class="calcBtn">계산</button>
+    </div>
+  </section>
+</body>
+</html>
