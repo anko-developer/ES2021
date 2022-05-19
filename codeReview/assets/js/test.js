@@ -45,5 +45,3 @@ calcBtn.addEventListener('click', () => {
 
   saleInfo.nowPrice = shirt.calc;
 });
-
-init();

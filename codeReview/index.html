@@ -13,6 +13,10 @@
       font-size: 24px;
     }
 
+    p {
+      margin: 0;
+    }
+
     header {
       padding: 0 16px;
       background-color: #fff;
@@ -55,6 +59,10 @@
     .priceInfo__item {
       display: flex;
       align-items: center;
+    }
+
+    .priceInfo__item:not(:first-child) {
+      margin-top: 14px;
     }
 
     .priceInfo__item input {
@@ -103,6 +111,10 @@
     </div>
 
     <div class="priceInfo">
+      <!-- <div class="priceInfo__item">
+        <label for="goodsName">NAME : </label>
+        <input id="goodsName" class="goodsName" type="text">
+      </div> -->
       <div class="priceInfo__item">
         <label for="before">BEFORE : $</label>
         <input id="before" class="beforePrice" type="text">
