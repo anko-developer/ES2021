@@ -14,7 +14,7 @@ const init = function() {
   Object.defineProperties(saleInfo, {
     nowPrice: {
       get() {
-        console.log('접근');
+        console.log('접근!');
       },
       set(newValue) {
         console.log('변경');
