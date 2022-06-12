@@ -12,7 +12,8 @@ require('./assets/scss/index.scss'); //sass 연결
 // import '../javascriptDeepdive/2022/09_scope';
 // import '../javascriptDeepdive/2022/10_private';
 // import '../javascriptDeepdive/2022/11_let_const';
-import '../javascriptDeepdive/2022/12_property_attibute';
+// import '../javascriptDeepdive/2022/12_property_attibute';
+import '../javascriptDeepdive/2022/13_prototype';
 
 
 function requireAll(r) {
