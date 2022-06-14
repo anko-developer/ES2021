@@ -96,4 +96,7 @@
     if (!ming.hasOwnProperty(key)) continue;
     console.log(key + ':' + ming[key]);
   }
+
+
+  console.log(Object.keys(ming));
 })();
