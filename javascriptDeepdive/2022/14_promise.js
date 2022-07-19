@@ -67,5 +67,5 @@
   .then(meal => console.log(meal))
   .catch(error => {
     console.log(error);
-  })
+  });
 })();
