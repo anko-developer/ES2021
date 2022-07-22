@@ -1,4 +1,3 @@
-// 휴가중
 (function() {
   function delayP(ms) {
     return new Promise((resolve, reject) => {
