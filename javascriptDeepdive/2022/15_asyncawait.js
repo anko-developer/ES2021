@@ -1,3 +1,4 @@
+// to rest
 (function() {
   function delayP(ms) {
     return new Promise((resolve, reject) => {
