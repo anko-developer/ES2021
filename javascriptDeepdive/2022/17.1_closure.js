@@ -1,3 +1,5 @@
+// to rest
+
 function foo() {
   let x = 1;
   const y = 2;
@@ -7,7 +9,7 @@ function foo() {
     console.log(x);
     debugger;
   }
-
+œ
   return bar;
 }
 
