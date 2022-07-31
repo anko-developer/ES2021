@@ -13,7 +13,14 @@ require('./assets/scss/index.scss'); //sass 연결
 // import '../javascriptDeepdive/2022/10_private';
 // import '../javascriptDeepdive/2022/11_let_const';
 // import '../javascriptDeepdive/2022/12_property_attibute';
-import '../javascriptDeepdive/2022/13_prototype';
+// import '../javascriptDeepdive/2022/13_prototype';
+// import '../javascriptDeepdive/2022/14.1_promise';
+// import '../javascriptDeepdive/2022/15_asyncawait.js';
+// import '../javascriptDeepdive/2022/16_context';
+// import '../javascriptDeepdive/2022/17.1_closure';
+// import '../javascriptDeepdive/2022/17.2_closure';
+import '../javascriptDeepdive/2022/18_class';
+// import '../javascriptDeepdive/js/app';
 
 
 function requireAll(r) {
