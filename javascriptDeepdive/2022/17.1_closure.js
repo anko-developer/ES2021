@@ -82,7 +82,7 @@ console.log(testPlus());
 console.log(testMinus());
 
 
-
+// 문제점 해결
 (function() {
   const counter = (function() {
     // 자유변수
