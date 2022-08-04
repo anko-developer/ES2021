@@ -19,7 +19,8 @@ require('./assets/scss/index.scss'); //sass 연결
 // import '../javascriptDeepdive/2022/16_context';
 // import '../javascriptDeepdive/2022/17.1_closure';
 // import '../javascriptDeepdive/2022/17.2_closure';
-import '../javascriptDeepdive/2022/18_class';
+// import '../javascriptDeepdive/2022/18_class';
+import '../javascriptDeepdive/2022/18.2_class';
 // import '../javascriptDeepdive/js/app';
 
 
