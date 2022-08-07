@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>코드리뷰</title>
+  <script defer src="./assets/js/main.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Raleway&display=swap" rel="stylesheet">
+  <style lang="scss">
+    body {
+      margin: 0;
+      font-family: 'PT Sans', sans-serif;
+      font-size: 16px;
+    }
+
+    p, ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .todo {
+      display: flex;
+    }
+
+    .todo__content {
+      padding: 0 10px;
+    }
+
+    .todo__contentHeader {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .todo__contentHeader button {
+      padding: 8px;
+      border: 0;
+      color: #fff;
+      background-color: #000;
+    }
+
+    .todo__textArea {
+      padding: 8px;
+      resize: none;
+    }
+
+    .todo__list {
+      overflow-y: auto;
+      height: 300px;
+      border: 1px solid red;
+    }
+
+    .todo__item {
+      padding: 0 8px;
+    }
+
+    .todo__item button {
+      padding: 4px;
+      border: 0;
+      color: #fff;
+      background-color: red;
+    }
+
+    .check-btn {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border: 1px solid #ddd;
+    }
+
+    .todo__item[data-check="true"] .check-btn {
+      background-color: red;
+    }
+
+    .todo__item[data-check="true"] .text {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <div class="todo">
+      <ul class="todo__list">
+        <!-- <li class="todo__item">
+          <input type="checkbox" name="" id="">
+          <span>텍스트</span>
+          <button class="del-btn" type="button">삭제</button>
+        </li> -->
+      </ul>
+      
+      <section class="todo__content">
+        <header class="todo__contentHeader">
+          <button class="add-btn" type="button">추가</button>
+        </header>
+        <textarea class="todo__textArea" cols="30" rows="10"></textarea>
+      </section>
+    </div>
+  </form>
+</body>
+</html>
