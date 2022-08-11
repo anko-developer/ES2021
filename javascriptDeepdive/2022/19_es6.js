@@ -1,4 +1,4 @@
-// arrow function!
+// arrow function
 // 즉시실행함수로도 사용
 const person = ((name) => {
   return name;
