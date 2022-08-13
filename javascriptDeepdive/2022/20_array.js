@@ -1,5 +1,5 @@
 (function() {
-  // 두 번째 인수로 전달한 콜백 ㅎ마수의 반환값으로 구성된 배열을 반환한다.
+  // 두 번째 인수로 전달한 콜백 ㅎ마수의 반환값으로 구성된 배열을 반환한다
   const test = Array.from({ length: 3 }, (a, b) => b); // a는 요소값, b는 인덱스를
   console.log(test);
 
