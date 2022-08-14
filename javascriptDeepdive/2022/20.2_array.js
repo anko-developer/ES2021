@@ -45,3 +45,16 @@
   });
   console.log(arr1); // [1, 4, 9]
 }());
+
+(function() {
+  const arr = [1, 100, 50, 20];
+
+  // 모든 요소를 순회하면서 콜백함수를 반복적으로 호출하고, 새로운 배열을 반환 (원본 배열 변경 X)
+  const result = arr.map((item, index) => {
+    return {
+      id: index,
+      content: item
+    }
+  });
+  console.log(result);
+}());
