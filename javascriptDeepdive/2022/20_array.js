@@ -27,4 +27,37 @@
     foods.push('orange');
   }
   console.log('foods', foods);
+
+
+  // 생성자함수로 push, pop 만들기
+  const Stack = (function() {
+    function Stack(array = []) {
+      if (!Array.isArray(array)) {
+        throw new TypeError(`${array} is not an array`);
+      }
+
+      this.array = array;
+    }
+
+    Stack.prototype = {
+      constructor: Stack,
+      push(value) {
+        return this.array.push(value);
+      },
+      pop(value) {
+        return this.array.pop(value);
+      },
+      copy() {
+        return [...this.array];
+      }
+    }
+
+    return Stack;
+  }());
+
+  const arrayTest = new Stack([1, 2]);
+  console.log(arrayTest.copy()); // [1,2]
+  console.log(arrayTest.push(3));
+  console.log(arrayTest.copy()); // [1,2,3]
+  
 }());
