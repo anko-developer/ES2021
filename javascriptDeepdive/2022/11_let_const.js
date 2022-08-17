@@ -1,5 +1,3 @@
-const { log } = require("handlebars");
-
 (function () {
   // let의 블록 레벨 스코프
   console.log(foo); // error - 변수 호이스팅이 발생하지 않는 것처럼 동작한다. let 키워드로 선언한 변수는 선언과 초기화 단계가 분리되어 진행 됨
@@ -48,3 +46,35 @@ const { log } = require("handlebars");
   person.name = 'anko';
   console.log(person); // {name: 'anko}
 })();
+
+
+
+(function() {
+  const obj = {
+    a : 'test1',
+    b : {
+      c : 'test2'
+    }
+  };
+
+  // 얕은 복사
+  const test = obj;
+  console.log(obj.a === test.a);
+  console.log(test.b.c === obj.b.c);
+
+  test.a = 'modify';
+  test.b.c = 'modify2'
+  console.log('test', test);
+  console.log('obj', obj);
+
+
+  // 깊은 복사
+  const test1 = { ...obj };
+  test1.a = 'modify3';
+  console.log('obj', obj); // a 프로퍼티 안바뀜
+  console.log('test1', test1); // a 프로퍼티가 modify3으로 바뀜
+
+  test1.b.c = 'modify4';
+  console.log('obj', obj); // b 프로퍼티 중첩 객체 값은 또 바뀌어버림, 이 문제점은 스프레드 문법 ... 복사로 해결불가하기 때문에 lodash cloneDeep 를 사용하여 깊은 복사해야한다.
+  console.log('test1', test1);
+}());
