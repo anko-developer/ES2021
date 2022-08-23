@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <style>
+    li {
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+  <form onSubmit="return false;">
+    <ul>
+      <li>
+        <label for="userId">아이디</label>
+        <input id="userId" type="text" maxlength="12" placeholder="아이디를 입력해주세요.">
+        <p>최소 6자, 최대 12자 / 영문 숫자 조합</p>
+      </li>
+      <li>
+        <label for="userPassword">비밀번호</label>
+        <input id="userPassword" type="text" placeholder="비밀번호를 입력해주세요.">
+        <p>최소 8자, 최대 12자 / 문자, 숫자,특수 문자 조합</p>
+      </li>
+      <li>
+        <label for="userEmail">이메일</label>
+        <input id="userEmail" type="text" placeholder="예) anko@gsitm.com">
+      </li>
+    </ul>
+    <button id="submitBtn" type="submit" onclick="postData();">가입</button>
+  </form>
+
+  <script>
+    /**
+     * class name - Validate
+     * property - user (아이디)
+     *            password (비밀번호)
+     *            email (이메일 주소)
+     */
+    class Validate {
+      constructor() {
+        this.user;
+        this.password;
+        this.email;
+      }
+
+      userCheck() {
+        return /^[A-Za-z0-9]{6,12}$/g.test(this.user);
+      }
+
+      passwordCheck() {
+        return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/g.test(this.password);
+      }
+
+      emailCheck() {
+        return /^[A-Za-z0-9]([-_\.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_\.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/g.test(this.email);
+      }
+
+      submit() {
+        if (!this.userCheck()) {
+          console.log('아이디 다시 입력해!');
+        } else if (!this.passwordCheck()) {
+          console.log('패스워드 다시 입력해!');
+        } else if (!this.emailCheck()) {
+          console.log('이메일 다시 입력해!');
+        } else {
+          console.log('회원가입이 완료되었습니다.');
+        }
+      }
+    }
+
+    const userId = document.querySelector('#userId');
+    const userPassword = document.querySelector('#userPassword');
+    const userEmail = document.querySelector('#userEmail');
+    const validation = new Validate();
+    const postData = () => {
+      validation.user = userId.value;
+      validation.password = userPassword.value;
+      validation.email = userEmail.value;
+      validation.submit();
+    };
+  </script>
+</body>
+</html>
