@@ -71,7 +71,7 @@
   const foreachTest = ['나다', '너다', , '내 앞에 희소배열값이다'];
   foreachTest.forEach((item) => console.log(item)); // '나다', '너다', '내 앞에 희소배열값이다'     희소 배열은 순회 대상에서 제외!
 
-  // map
+  // map()
   // 콜백함수의 반환값들로 구성된 새로운 배열을 반환
   const mapTest = [2, 4, 6, 8, 10];
   const mapResult = mapTest.map((item) => item + 1);
