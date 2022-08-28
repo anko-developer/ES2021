@@ -1,6 +1,9 @@
 (function() {
   /**
    * Array
+   * 
+   * Array.from
+   * 
    * 원본 배열을 직접 변경하는 메서드 리스트
    * Array.prototype.fill(채울 요소, start index, end index)
    * Array.prototype.sort()
@@ -73,7 +76,13 @@
 
   // map
   // 콜백함수의 반환값들로 구성된 새로운 배열을 반환
-  const mapTest = [2, 4, 6, 8, 10];
+  const mapTest = [2, 1, 100, 4, 6, 8, 10];
   const mapResult = mapTest.map((item) => item + 1);
   console.log(mapResult); // [3, 5, 7, 9, 11]
+
+  // 복습
+  console.log('sort test', mapTest.sort((a, b) => b - a ));
+  console.log('concat test', mapTest.concat('test'));
+  const gogogo = Array.from({length:3, 0:'에이', 1:'비', 2: '씨'}, i => i)
+  console.log(gogogo);
 }());
