@@ -20,8 +20,17 @@ require('./assets/scss/index.scss'); //sass 연결
 // import '../javascriptDeepdive/2022/17.1_closure';
 // import '../javascriptDeepdive/2022/17.2_closure';
 // import '../javascriptDeepdive/2022/18_class';
-import '../javascriptDeepdive/2022/18.2_class';
+// import '../javascriptDeepdive/2022/18.2_class';
+// import '../javascriptDeepdive/2022/19_es6';
+// import '../javascriptDeepdive/2022/20_array.js';
+// import '../javascriptDeepdive/2022/20.3_array.js';
+// import '../javascriptDeepdive/2022/21_math.js';
+// import '../javascriptDeepdive/2022/22_date.js';
+// import '../javascriptDeepdive/2022/23_reg.js';
+// import '../javascriptDeepdive/2022/23.2_regExp.js';
 // import '../javascriptDeepdive/js/app';
+// import '../javascriptDeepdive/note/220825';
+// import '../javascriptDeepdive/note/220829';
 
 
 function requireAll(r) {
