@@ -30,7 +30,7 @@
 
     if (!parsedURL) return {};
 
-    // 배열 디스트럭처링 할당을 사용하여 이터러블에서 필요한 요소만 추출한다.
+    // 배열 디스트럭처링 할당을 사용하여 이터러블에서 필요한 요소만 추출한다
     const [, protocol, host, path] = parsedURL; // 인덱스 값으로 순서대로 가져오기 때문에 0번 인덱스는 건너띄기위해 , 하나 넣어줬음
     return { protocol, host, path };
   }
