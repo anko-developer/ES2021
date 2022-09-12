@@ -26,7 +26,7 @@
   console.log(map); // Map(0) {size: 0}
 
 
-  // forEach로 요소 순회 하기 
+  // forEach로 요소 순회 하기
   // arguments(현재 순회 중인 요소값, 현재 순회 중인 키값, 현재 순회 중인 Map 객체 자체)
   const wook = { name: 'wook' };
   const ming = { name: 'ming' };
