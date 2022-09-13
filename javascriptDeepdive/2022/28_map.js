@@ -5,7 +5,7 @@
   const map = new Map([['key1', 'value1'], ['key2', 'value2']]);
   console.log(map.size); // 2
 
-  // map은 set 메서드로 요소를 추가
+  // map은 set 메서드로 요소를 추가 
   map
     .set('key3', 'value3')
     .set('key4', 'value4');
