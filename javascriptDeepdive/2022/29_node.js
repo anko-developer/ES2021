@@ -9,4 +9,44 @@
 
   const testSibling = document.querySelector('.test'); // <li class="item test">테스트 버튼3</li>
   console.log(testSibling.nextElementSibling); // <li class="item">테스트 버튼4</li>  모든 형제를 찾지는 않고 next 요소 한개만 찾음
+
+  // 요소 안의 모든 텍스트 반환(마크업은 제외)
+  const $textNode = document.querySelector('#textNode');
+  console.log(textNode.textContent); // 텍스트 노드를 반환해주세요.
+  $textNode.insertAdjacentHTML('beforeend', '<p>끝에 위치하게 추가</p>');
+  $textNode.insertAdjacentHTML('afterend', '<p>해당 요소 다음에 오게 추가</p>');
+
+  // 추가할 텍스트에 마크없이 없는 경우에는 이렇게 텍스트를 생성하여 추가하는 것보다
+  // textContent 프로퍼티가 훨씬 간편하다.
+  const divBox = document.createElement('div');
+  // divBox.appendChild(document.createTextNode('불라불라'));
+  divBox.textContent = '불라불라';
+
+
+  // 아래 예제는 3개의 요소 노드를 생성하여 DOM에 3번 추가하므로 리플로우와 리페인트가 3번 실행 됨.
+  // 매우 비효율적!
+  // 그렇기 때문에 컨테이너 요소를 미리 생성한 다음, 추가해야할 요소 노드를 컨테이너 요소에 자식 노드로 추가하고
+  // 컨테이너 요소를 #testBox 요소에 추가한다면 DOM은 한 번만 변경되므로 효율적!
+  // 컨테이너 요소(div)가 ul 안에 들어가면 바람직하지 않기 때문에
+  // DocumentFragment 노드를 통해 해결가능
+  const $testBox = document.querySelector('#testBox');
+
+  // 컨테이너 요소 추가 대신 DocumentFragment 노드를 사용
+  // const $container = document.createElement('div');
+  const $fragment = document.createDocumentFragment();
+
+  ['Apple', 'Banana', 'Orange'].forEach((text) => {
+    // 1. 요소 노드 생성
+    const $li = document.createElement('li');
+    // 2. 텍스트 노드 생성
+    const textNode = document.createTextNode(text);
+    // 3. 텍스트 노드를 $li 요소 노드의 자식 노드로 추가
+    $li.appendChild(textNode);
+    // 4. $li 요소 노드를 #testBox 요소 노드의 마지막 자식 노드로 추가
+    // $testBox.appendChild($li);
+    $fragment.appendChild($li);
+  });
+
+  // 5. 컨테이너 요소 노드를 #testBox 요소 노드의 마지막 자식 노드로 추가
+  $testBox.appendChild($fragment);
 }());
