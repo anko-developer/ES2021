@@ -13,7 +13,7 @@
     console.log(e.timeStamp);
   });
 
-  // 마우스 드래그하여 이동시키는 예제
+  // 마우스 드래그하여 이동시키는 예제 
   const $box = document.querySelector('.box');
   const initailMousePos = { x: 0, y: 0 };
   const offset = { x: 0, y: 0 };
