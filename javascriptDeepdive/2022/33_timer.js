@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 (function() {
-  // lodash의 debounce 함수를 사용하는 것을 권장
+  // lodash의 debounce 함수를 사용하는 것을 권장 
   const $debounceInput = document.querySelector('.debounceInput');
   const $debounceInputText = document.querySelector('.debounceInputText');
   
