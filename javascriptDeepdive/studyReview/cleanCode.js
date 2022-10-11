@@ -32,7 +32,7 @@
       value: document.querySelector('.value'),
     };
 
-    return result; 
+    return result;
   }
 
   function getElements() {
