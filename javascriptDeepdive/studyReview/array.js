@@ -22,4 +22,22 @@
 
   const arrSlice3 = arr.slice(); // 인수를 모두 생략하면  배열 전체를 복사한다.
   console.log(arr === arrSlice3); // false 얕은 복사
+
+  const arr1 = [40, 100, 1, 5, 2];
+  
+  console.log(arr1.sort((a, b) => a - b));
+  console.log(arr1.sort((a, b) => b - a));
+
+  const todos = [
+    { id: 4, content: 'test4' },
+    { id: 1, content: 'test1' },
+    { id: 2, content: 'test2' },
+  ];
+  
+  function compare(key) { 
+    return (a, b) => (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0));
+  }
+
+  todos.sort(compare('id'));
+  console.log(todos);
 }());
