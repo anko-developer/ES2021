@@ -40,4 +40,50 @@
 
   todos.sort(compare('id'));
   console.log(todos);
+
+  class Users {
+    constructor() {
+      this.users = [
+        { id: 1, name: 'Lee' },
+        { id: 2, name: 'Kim' },
+      ];
+    }
+
+    findById(id) {
+      return this.users.filter(user => user.id === id);
+    }
+
+    remove(id) {
+      this.users = this.users.filter(user => user.id !== id);
+    }
+  }
+
+  const users = new Users();
+  let user = users.findById(1);
+  console.log(user); // 1
+
+  console.log('users1', users);
+  users.remove(1);
+
+  console.log('users2', users);
+  user = users.findById(1);
+  console.log('users3', users);
+  console.log(user);
+
+
+  const reduceArray = [1, 2, 3, 4].reduce((acc, cur, i, arr) => acc + cur, 0);
+  console.log(reduceArray);
+
+  const valueArray = [1, 2, 1, 4, 5, 2, 4];
+  const resultArray = valueArray.reduce((acc, cur, i, arr) => {
+    if (arr.indexOf(cur) === i) {
+      acc.push(cur);
+    }
+    return acc;
+  }, []);
+  console.log(resultArray);
+
+  // 중복요소 제거는 filter 메서드가 훨씬 직관적
+  const reduceArray1 = valueArray.filter((item, i, arr) => arr.indexOf(item) === i);
+  console.log(reduceArray1);
 }());
