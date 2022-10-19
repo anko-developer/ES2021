@@ -8,7 +8,7 @@
   const regExp2 = /[0-9,]+/g;
   const regExp3 = /[\d,]+/g;
   const regExp4 = /[\D,]+/g;
-  console.log(target1.match(regExp1));
+  console.log(target1.match(regExp1)); 
   console.log(target1.match(regExp2));
   console.log(target1.match(regExp3));
   console.log(target1.match(regExp4));
