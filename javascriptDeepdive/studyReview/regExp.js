@@ -14,7 +14,7 @@
   console.log(target1.match(regExp4));
 
   const regExp5 = /[^A]+/g;
-  console.log(target1.match(regExp5));
+  console.log(target1.match(regExp5)); sss
 
   const url = 'https://example.com';
   console.log(/^https?:\/\//g.test(url));
