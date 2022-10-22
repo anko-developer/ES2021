@@ -17,4 +17,4 @@
   console.log(Object.getOwnPropertySymbols(obj)[0]); // Symbol(name)
   const symbolTest = Object.getOwnPropertySymbols(obj)[0];
   console.log(obj[symbolTest]); // anko
-}());
+}()); 
