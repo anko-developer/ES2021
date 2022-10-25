@@ -2,20 +2,22 @@
   const $display = document.querySelector('.calc__display');
   const $calcBtn = document.querySelectorAll('.calc__btn');
   const obj = {
-    calcValue: 0, // 계산된 것 계속 체크
-    saveValue: 0, // 제일 후순위로 입력된 값 체크
+    calcValue: '', // 계산된 것 계속 체크
+    saveValue: '', // 제일 후순위로 입력된 값 체크
     operator: '', // 연산자
   };
   
   // 숫자 계산
   const getNumber = (value) => {
     if (obj.operator) {
-      const result = obj.saveValue + value;
-      obj.saveValue = Number(result);
+      if ((value === '.' && !/[.]/g.test(obj.saveValue)) || /^[0-9]$/g.test(value)) {
+        obj.saveValue += value;
+      }
       $display.textContent = obj.saveValue;
     } else {
-      const result = obj.calcValue + value;
-      obj.calcValue = Number(result)
+      if ((value === '.' && !/[.]/g.test(obj.calcValue)) || /^[0-9]$/g.test(value)) {
+        obj.calcValue += value;
+      }
       $display.textContent = obj.calcValue;
     }
 
@@ -26,31 +28,32 @@
   const calc = () => {
     switch (obj.operator) {
       case '+':
-        obj.calcValue += obj.saveValue;
+        obj.calcValue = parseFloat(obj.calcValue) + parseFloat(obj.saveValue);
         break;
       
       case '-':
-        obj.calcValue -= obj.saveValue;
+        obj.calcValue = parseFloat(obj.calcValue) - parseFloat(obj.saveValue);
         break;
 
       case '/':
-        obj.calcValue /= obj.saveValue;
+        obj.calcValue = parseFloat(obj.calcValue) / parseFloat(obj.saveValue);
         break;
 
       case 'X':
-        obj.calcValue *= obj.saveValue;
+        obj.calcValue = parseFloat(obj.calcValue) * parseFloat(obj.saveValue);
         break;
 
       case '**':
-        obj.calcValue **= obj.saveValue;
+        obj.calcValue = parseFloat(obj.calcValue) ** parseFloat(obj.saveValue);
         break;
 
       case '%':
-        obj.calcValue %= obj.saveValue;
+        obj.calcValue = parseFloat(obj.calcValue) % parseFloat(obj.saveValue);
         break;
     }
 
-    obj.saveValue = 0;
+    obj.saveValue = '';
+    console.log(obj);
   };
 
   // 연산자 체크
@@ -67,6 +70,11 @@
   // 결괏값
   const result = () => {
     calc();
+
+    if (obj.calcValue === '') {
+      return;
+    }
+
     $display.textContent = obj.calcValue;
     obj.operator = '';
     console.log(obj);
@@ -74,8 +82,8 @@
 
   // 초기화
   const reset = () => {
-    obj.calcValue = 0;
-    obj.saveValue = 0;
+    obj.calcValue = '';
+    obj.saveValue = '';
     obj.operator = '';
     $display.textContent = 0;
   };
