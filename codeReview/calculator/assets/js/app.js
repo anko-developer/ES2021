@@ -9,22 +9,16 @@
   
   // 숫자 계산
   const getNumber = (value) => {
-    if (obj.operator) {
-      if ((value === '.' && !/[.]/g.test(obj.saveValue)) || /^[0-9]$/g.test(value)) {
-        obj.saveValue += value;
-      }
-      $display.textContent = obj.saveValue;
-    } else {
-      if ((value === '.' && !/[.]/g.test(obj.calcValue)) || /^[0-9]$/g.test(value)) {
-        obj.calcValue += value;
-      }
-      $display.textContent = obj.calcValue;
-    }
+    const target = obj.operator ? 'saveValue' : 'calcValue';
 
+    if ((value === '.' && !/[.]/g.test(obj[`${target}`])) || /^[0-9]$/g.test(value)) {
+      obj[`${target}`] += value;
+    }
+    $display.textContent = obj[`${target}`];
     console.log(obj);
   };
 
-  // 결과 계산
+  // 결과 계산 
   const calc = () => {
     switch (obj.operator) {
       case '+':
