@@ -14,5 +14,5 @@
 
   set.add('bad');
   console.log(set);
-  console.log(typeof set); ss
+  console.log(typeof set);
 }());
