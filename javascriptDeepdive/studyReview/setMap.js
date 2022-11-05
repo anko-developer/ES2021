@@ -15,4 +15,14 @@
   set.add('bad');
   console.log(set);
   console.log(typeof set);
+
+  const map = new Map([['key1', '명욱'], ['key2', '민정']]);
+  map.set('key3', '앙꼬');
+  console.log(map);
+
+  const { size } = map;
+  console.log(size); // 3
+
+  console.log(map.get('key2'));
+  map.forEach((v, k, me) => console.log(v, k, me));
 }());
