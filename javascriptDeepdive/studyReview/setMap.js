@@ -9,7 +9,7 @@
 
 
   const set = new Set();
-  set.add('good'); 
+  set.add('good');
   console.log(set);
 
   set.add('bad');
