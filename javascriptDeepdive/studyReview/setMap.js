@@ -21,7 +21,7 @@
   console.log(map);
 
   const { size } = map;
-  console.log(size); // 3
+  console.log(size);
 
   console.log(map.get('key2'));
   map.forEach((v, k, me) => console.log(v, k, me)); 
