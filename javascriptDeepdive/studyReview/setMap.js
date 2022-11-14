@@ -14,7 +14,7 @@
 
   set.add('bad');
   console.log(set);
-  console.log(typeof set);
+  console.log(typeof set); 
 
   const map = new Map([['key1', '명욱'], ['key2', '민정']]);
   map.set('key3', '앙꼬');
