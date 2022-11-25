@@ -11,4 +11,8 @@
   const li = document.createElement('li');
   li.textContent = 'test';
   fruits.insertBefore(li, fruits.lastElementChild);
+
+  const { attributes } = fruits;
+  console.log(attributes.id.value);
+  console.log(attributes.class.value);
 }());
