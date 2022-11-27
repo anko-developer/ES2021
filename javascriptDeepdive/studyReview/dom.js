@@ -15,4 +15,9 @@
   const { attributes } = fruits;
   console.log(attributes.id.value);
   console.log(attributes.class.value);
+
+  if (fruits.dataset.userId === 'anko') {
+    console.log('good');
+    fruits.dataset.addData = 'good';
+  }
 }());
