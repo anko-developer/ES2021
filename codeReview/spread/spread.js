@@ -27,6 +27,6 @@
   // domItem.filter(item => console.log(item)); // TypeError: domItem.filter is not a function
   
   const arr5 = [...domItem];
-  console.dir(arr5); // [[Prototype]]: Array
+  console.dir(arr5); // [[Prototype]]: Array 
   arr5.filter(item => console.log(item)); // 에러 없이 array prototype method 사용 가능
 }());
