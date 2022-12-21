@@ -34,4 +34,7 @@
   const user = users.find(user => user.dataset.userId === '6900'); // data-user-id 값 취득
   console.log(user.dataset.role); // data-role 값 취득! user
   user.dataset.role = 'test'; // data-role 값 변경 
+
+  const testBtn = document.querySelector('.testBtn');
+  console.log(testBtn.dataset.testNum === '9494');
 }());
