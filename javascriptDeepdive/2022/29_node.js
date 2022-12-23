@@ -49,4 +49,22 @@
 
   // 5. 컨테이너 요소 노드를 #testBox 요소 노드의 마지막 자식 노드로 추가
   $testBox.appendChild($fragment);
+
+
+  // appendChild 는 항상 요소의 끝에 위치하게 삽입된다,
+  // 원하는 위치에 삽입을할 때 insertBefore 메서드를 사용.
+  // 첫 번째 인수로 전달받은 노드를 두 번째 인수로 전달받은 노드 앞에 삽입한다.
+  // 두 번째 인수가 insertBefore 메서드를 호출한 요소의 자식이어야한다, 그렇지 않으면 에러 발생
+  // 두 번째 인수가 null 이면 appendChild 처럼 동작한다.
+  const $insertBox = document.querySelector('#insertBox');
+  const $insertLi = document.createElement('li');
+  const [$a, $b,] = $insertBox.children; // children을 디스트럭쳐링으로 첫 번째, 두 번째 요소를 빼내고, 이미 존재하는 노드들의 순서를 appendChild, insertBefore로 바꿀 수 있다.
+  $insertLi.textContent = 'test';
+  // $insertBox.insertBefore($insertLi, document.querySelector('.insertTest'));
+  $insertBox.appendChild($a);
+  $insertBox.insertBefore($b, $insertBox.lastElementChild);
+  
+  // 노드 교체하기
+  // 첫 번째 인수는 newChild, 두 번째 인수는 교체될 oldChild
+  $insertBox.replaceChild($insertLi, document.querySelector('.insertTest'));
 }());
