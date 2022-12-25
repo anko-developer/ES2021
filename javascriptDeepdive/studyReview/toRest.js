@@ -31,7 +31,7 @@
 
   const testObj = {
     a: 'test1', // 이부분은 깊은 복사 가능
-    b: { // 한단계 더 deep 해지면 spread 문법으로 깊은 복사가 안됨
+    b: { // 한단계 더 deep 해지면 spread 문법으로 깊은 복사가 안됨 ß
       aa: 'test2'
     }
   };
