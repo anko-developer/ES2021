@@ -22,9 +22,17 @@
 
   const url = 'http://localhost:3000';
 
-  // 프로미스 체이닝 예
+  // Promise Chain 예
   promiseGet(`${url}/todos/3`)
     .then(({ id }) => promiseGet(`${url}/todos/${id}`))
     .then(info => console.log(info))
+    .catch(error => console.log(error));
+
+  const githubIds = ['anko-developer', 'joshua1988'];
+  
+  // Promise All 예
+  Promise.all(githubIds.map(id => promiseGet(`https://api.github.com/users/${id}`)))
+    .then(users => users.map(user => user.login))
+    .then(console.log)
     .catch(error => console.log(error));
 }());
