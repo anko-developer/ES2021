@@ -1,36 +1,9 @@
 require('./assets/scss/index.scss'); //sass 연결
 
-// import '../javascriptDeepdive/2022/00_modalTest';
-// import '../javascriptDeepdive/2022/01_variable';
-// import '../javascriptDeepdive/2022/02_type';
-// import '../javascriptDeepdive/2022/03_operator';
-// import '../javascriptDeepdive/2022/04_controlFlow';
-// import '../javascriptDeepdive/2022/05_typeCoercion';
-// import '../javascriptDeepdive/2022/06_object';
-// import '../javascriptDeepdive/2022/07_immutability';
-// import '../javascriptDeepdive/2022/08_function';
-// import '../javascriptDeepdive/2022/09_scope';
-// import '../javascriptDeepdive/2022/10_private';
-// import '../javascriptDeepdive/2022/11_let_const';
-// import '../javascriptDeepdive/2022/12_property_attibute';
-// import '../javascriptDeepdive/2022/13_prototype';
-// import '../javascriptDeepdive/2022/14.1_promise';
-// import '../javascriptDeepdive/2022/15_asyncawait.js';
-// import '../javascriptDeepdive/2022/16_context';
-// import '../javascriptDeepdive/2022/17.1_closure';
-// import '../javascriptDeepdive/2022/17.2_closure';
-// import '../javascriptDeepdive/2022/18_class';
-// import '../javascriptDeepdive/2022/18.2_class';
-// import '../javascriptDeepdive/2022/19_es6';
-// import '../javascriptDeepdive/2022/20_array.js';
-// import '../javascriptDeepdive/2022/20.3_array.js';
-// import '../javascriptDeepdive/2022/21_math.js';
-// import '../javascriptDeepdive/2022/22_date.js';
-// import '../javascriptDeepdive/2022/23_reg.js';
-// import '../javascriptDeepdive/2022/23.2_regExp.js';
-// import '../javascriptDeepdive/js/app';
-// import '../javascriptDeepdive/note/220825';
-// import '../javascriptDeepdive/note/220829';
+// import '../javascriptDeepdive/2022/34_callstack';
+import '../javascriptDeepdive/studyReview/asyncawait';
+// import '../codeReview/spread/spread';
+// import '../codeReview/spread/destructuring';
 
 
 function requireAll(r) {
