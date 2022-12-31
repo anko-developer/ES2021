@@ -8,7 +8,7 @@
 
 // delayP(5000).then(result => {
 //     console.log(result);
-// })
+// }) 
 
 async function a() {
   const a = 1;
