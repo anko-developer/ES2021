@@ -1,4 +1,3 @@
-
 // function delayP(ms) {
 //   return new Promise((resolve, reject) => {
 //     setTimeout(resolve('테스트입니다'), ms);
@@ -8,7 +7,7 @@
 
 // delayP(5000).then(result => {
 //     console.log(result);
-// }) 
+// })
 
 async function a() {
   const a = 1;
@@ -17,7 +16,7 @@ async function a() {
   const b = await Promise.resolve(2);
   console.log('b', b);
   return a + b;
-};
+}
 
 // Promise.resolve(1)
 //   .then((a) => {
