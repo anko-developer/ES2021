@@ -21,7 +21,7 @@
 
   
   // async 함수는 명시적으로 프로미스를 반환하지 않더라도
-  // async 함수는 암묵적으로 반환값을 resolve하는 프로미스를 반환한다.
+  // async 함수는 암묵적으로 반환값을 resolve하는 프로미스를 반환한다. 
 
   // async 함수 선언문
   async function foo(n) {
