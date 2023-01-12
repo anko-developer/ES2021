@@ -57,7 +57,7 @@
 
   async function logTodoComplate() {
     try {
-      const user = await fetchInfo();
+      const user = await fetchInfo(); 
       if (user.id === 1) {
         const { completed } = await fetchOther();
         console.log(completed);
