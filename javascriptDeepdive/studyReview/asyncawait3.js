@@ -2,7 +2,7 @@ function delayP(ms) {
   return new Promise((resolve, reject) => {
     setTimeout(resolve('테스트입니다'), ms);
     reject(error);
-  });
+  }); 
 };
 
 delayP(5000).then(result => {
