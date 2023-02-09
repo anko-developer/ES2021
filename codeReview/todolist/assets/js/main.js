@@ -19,7 +19,7 @@
   let todoItems = storage.fetch();
 
   // 저장되어있는 리스트 반복문 초기 실행
-  function itemCreated() {
+  const itemCreated = function() {
     todoList.innerHTML = '';
 
     todoItems.forEach((el, index) => {
@@ -33,18 +33,18 @@
   
       todoList.innerHTML += item;
     });
-  }
+  };
   itemCreated();
 
   // 할 일 추가
-  function update() {
+  const update = function() {
     textBox.value = '';
     itemCreated();
-  }
+  };
 
   // 이벤트 버블링으로 동적 요소 감지
   todoList.addEventListener('click', (e) => {
-    // 삭제 버튼
+    // 삭제 버튼 
     if (e.target.className === 'del-btn') {
       localStorage.removeItem(e.target.parentNode.dataset.key); // localStorage 에서 해당 key 값을 삭제
       todoItems.splice(e.target.parentNode.dataset.index, 1); // Array 에서도 index 값으로 부터 1개 splice
